@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: List-Easy
+  m_EditorClassIdentifier: 
+  monsterName: List Meme
+  description: "\"10 \u0111i\u1EC3m x\xE1c xu\u1EA5t th\u1ED1ng k\xEA nh\u01B0ng
+    kh\xF4ng c\xF3 \u0111\u01B0\u1EE3c em :(((\""
+  frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
+  backSprite: {fileID: 21300000, guid: ed8e1d9976a1fd94d961840d8f6e7764, type: 3}
+  type: 1
+  maxHP: 100
+  attack: 50
+  defense: 65
+  spAttack: 78
+  spDefense: 69
+  speed: 80
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 4
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: e517d1ae2dfc1b7438519b188fc168aa, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 1f42749f0256335439d95c28d7242d41, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 46b58ce61a45e2b47a82cea412ee2498, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c643f07f64e797f4f95a76283bb4e589, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 207fd772a0e09f84382f1f7b5b1c698b, type: 2}
+    level: 0

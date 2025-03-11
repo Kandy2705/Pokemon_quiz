@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Hard1
+  m_EditorClassIdentifier: 
+  question: "Quick Sort v\xE0 Merge Sort kh\xE1c nhau c\u01A1 b\u1EA3n \u1EDF \u0111i\u1EC3m
+    n\xE0o?"
+  questionType: 3
+  answers:
+  - correctAnswer: 0
+    answer: "Quick Sort s\u1EED d\u1EE5ng kh\xF4ng gian b\u1ED5 sung, trong khi Merge
+      Sort kh\xF4ng."
+  - correctAnswer: 1
+    answer: "Quick Sort c\xF3 th\u1EC3 ch\u1EA1y t\u1EA1i ch\u1ED7 (in-place), trong
+      khi Merge Sort c\u1EA7n th\xEAm kh\xF4ng gian."
+  - correctAnswer: 0
+    answer: "Merge Sort c\xF3 \u0111\u1ED9 ph\u1EE9c t\u1EA1p th\u1EDDi gian trung
+      b\xECnh th\u1EA5p h\u01A1n Quick Sort."
+  - correctAnswer: 0
+    answer: "Merge Sort kh\xF4ng s\u1EED d\u1EE5ng chi\u1EBFn l\u01B0\u1EE3c \"Chia
+      \u0111\u1EC3 tr\u1ECB\"."

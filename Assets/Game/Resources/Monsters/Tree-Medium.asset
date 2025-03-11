@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Tree-Medium
+  m_EditorClassIdentifier: 
+  monsterName: Tree Meme Ver 2
+  description: "C\u1ED1 g\u1EAFng \u0111\u1EC3 tr\u1EE5 l\u1EA1i \u0111i, b\u1EA1n
+    s\u1EBD tr\u1EDF n\xEAn \xE1m \u1EA3nh v\u1EC1 nh\u1EEFng c\xE2u h\u1ECFi \u0111\u1EA7y
+    ma qu\u1EF7 n\xE0y \u0111\u1EA5y"
+  frontSprite: {fileID: 21300000, guid: 179bd38ab997c7440844309bc52e708a, type: 3}
+  backSprite: {fileID: 21300000, guid: 653a6fe1d97188644a3747cd5e674bc4, type: 3}
+  type: 2
+  maxHP: 200
+  attack: 70
+  defense: 80
+  spAttack: 100
+  spDefense: 100
+  speed: 50
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: bf40e6d057123d0409a6866450a947ca, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: f1ef0af59ca638b43901c034df4201f4, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 1a194633e9a04fa4da25674041ecee0d, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: a3d5edfb33e5a4f47803e97c0c4cd302, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 77e36b0c811b2ca4892d1339896f33d5, type: 2}
+    level: 0

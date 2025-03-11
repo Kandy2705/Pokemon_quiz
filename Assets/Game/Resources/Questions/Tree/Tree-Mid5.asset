@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Mid5
+  m_EditorClassIdentifier: 
+  question: "Trong c\xE2y \u0111\u1ECF-\u0111en (Red-Black Tree), t\u1EA1i sao t\u1EA5t
+    c\u1EA3 c\xE1c \u0111\u01B0\u1EDDng \u0111i t\u1EEB m\u1ED9t n\xFAt \u0111\u1EBFn
+    m\u1ED9t n\xFAt l\xE1 \u0111\u1EC1u c\xF3 c\xF9ng s\u1ED1 n\xFAt \u0111en?"
+  questionType: 2
+  answers:
+  - correctAnswer: 1
+    answer: "\u0110\u1EC3 gi\u1EEF cho c\xE2y c\xE2n b\u1EB1ng v\u1EC1 m\u1EB7t chi\u1EC1u
+      cao."
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 t\u1ED1i \u01B0u h\xF3a th\u1EDDi gian t\xECm ki\u1EBFm."
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 \u0111\u1EA3m b\u1EA3o s\u1ED1 l\u01B0\u1EE3ng n\xFAt trong
+      c\xE2y lu\xF4n kh\xF4ng \u0111\u1ED5i."
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 l\xE0m gi\u1EA3m b\u1ED9 nh\u1EDB c\u1EA7n s\u1EED d\u1EE5ng."

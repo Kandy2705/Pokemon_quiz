@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Mid2
+  m_EditorClassIdentifier: 
+  question: "Th\u1EE9 t\u1EF1 duy\u1EC7t Post-order c\u1EE7a c\xE2y nh\u1ECB ph\xE2n
+    v\u1EDBi Root = A, Left = B, Right = C l\xE0 g\xEC?"
+  questionType: 2
+  answers:
+  - correctAnswer: 0
+    answer: ' A B C'
+  - correctAnswer: 0
+    answer: B A C
+  - correctAnswer: 1
+    answer: B C A
+  - correctAnswer: 0
+    answer: C B A

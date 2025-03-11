@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Mid4
+  m_EditorClassIdentifier: 
+  question: "Trong danh s\xE1ch li\xEAn k\u1EBFt \u0111\u01A1n, m\u1ED7i ph\u1EA7n
+    t\u1EED c\xF3 bao nhi\xEAu li\xEAn k\u1EBFt ?"
+  questionType: 0
+  answers:
+  - correctAnswer: 0
+    answer: "Kh\xF4ng c\xF3 li\xEAn k\u1EBFt"
+  - correctAnswer: 0
+    answer: "M\u1ED9t li\xEAn k\u1EBFt \u0111\u1EBFn ph\u1EA7n t\u1EED tr\u01B0\u1EDBc
+      \u0111\xF3"
+  - correctAnswer: 1
+    answer: "M\u1ED9t li\xEAn k\u1EBFt \u0111\u1EBFn ph\u1EA7n t\u1EED ti\u1EBFp
+      theo"
+  - correctAnswer: 0
+    answer: "Hai li\xEAn k\u1EBFt, m\u1ED9t \u0111\u1EBFn ph\u1EA7n t\u1EED tr\u01B0\u1EDBc
+      \u0111\xF3 v\xE0 m\u1ED9t \u0111\u1EBFn ph\u1EA7n t\u1EED ti\u1EBFp theo"

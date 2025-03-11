@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Mid5
+  m_EditorClassIdentifier: 
+  question: "\u0110\u1ED1i v\u1EDBi Quick Sort, tr\u01B0\u1EDDng h\u1EE3p x\u1EA5u
+    nh\u1EA5t x\u1EA3y ra khi:"
+  questionType: 3
+  answers:
+  - correctAnswer: 1
+    answer: "Pivot lu\xF4n l\xE0 ph\u1EA7n t\u1EED nh\u1ECF nh\u1EA5t ho\u1EB7c l\u1EDBn
+      nh\u1EA5t."
+  - correctAnswer: 0
+    answer: " Pivot lu\xF4n l\xE0 ph\u1EA7n t\u1EED \u1EDF gi\u1EEFa danh s\xE1ch."
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch \u0111\xE3 \u0111\u01B0\u1EE3c s\u1EAFp x\u1EBFp."
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch ch\u1EE9a c\xE1c gi\xE1 tr\u1ECB gi\u1ED1ng nhau."

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Hard4
+  m_EditorClassIdentifier: 
+  question: "Cho m\u1ED9t m\u1EA3ng \nA=[5,3,8,6,2,7,4,1]. Sau khi \xE1p d\u1EE5ng
+    Heap Sort, c\xE2y max-heap \u0111\u1EA7u ti\xEAn \u0111\u01B0\u1EE3c x\xE2y d\u1EF1ng.
+    G\u1ED1c c\u1EE7a c\xE2y l\xE0 bao nhi\xEAu?"
+  questionType: 3
+  answers:
+  - correctAnswer: 0
+    answer: 5
+  - correctAnswer: 0
+    answer: 6
+  - correctAnswer: 0
+    answer: 7
+  - correctAnswer: 1
+    answer: 8

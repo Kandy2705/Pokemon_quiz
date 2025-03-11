@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Hard2
+  m_EditorClassIdentifier: 
+  question: "Cho m\u1ED9t m\u1EA3ng g\u1ED3m n=8 ph\u1EA7n t\u1EED: [7,3,9,2,6,8,1,5].
+    Th\u1EF1c hi\u1EC7n Bubble Sort \u0111\u1EC3 s\u1EAFp x\u1EBFp m\u1EA3ng theo
+    th\u1EE9 t\u1EF1 t\u0103ng d\u1EA7n. H\u1ECFi sau 3 l\u1EA7n l\u1EB7p (pass),
+    m\u1EA3ng tr\xF4ng nh\u01B0 th\u1EBF n\xE0o?"
+  questionType: 3
+  answers:
+  - correctAnswer: 0
+    answer: '[3,2,6,1,5,7,8,9]'
+  - correctAnswer: 0
+    answer: '[2,1,5,3,6,7,8,9]'
+  - correctAnswer: 1
+    answer: '[3,2,1,5,6,7,8,9]'
+  - correctAnswer: 0
+    answer: '[2,3,5,6,1,7,8,9]'

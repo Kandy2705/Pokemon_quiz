@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Easy2
+  m_EditorClassIdentifier: 
+  question: "Lo\u1EA1i danh s\xE1ch n\xE0o cho ph\xE9p ch\xE8n v\xE0 x\xF3a \u1EDF
+    \u0111\u1EA7u v\xE0 cu\u1ED1i?"
+  questionType: 1
+  answers:
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch li\xEAn k\u1EBFt \u0111\u01A1n (Singly Linked List)"
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch li\xEAn k\u1EBFt k\xE9p (Doubly Linked List)"
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch v\xF2ng (Circular Linked List)"
+  - correctAnswer: 1
+    answer: "C\u1EA3 A, B v\xE0 C"

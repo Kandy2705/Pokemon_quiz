@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Hard3
+  m_EditorClassIdentifier: 
+  question: "Gi\u1EA3 s\u1EED b\u1EA1n \u0111ang s\u1EED d\u1EE5ng Quick Sort \u0111\u1EC3
+    s\u1EAFp x\u1EBFp m\u1EA3ng [4,7,2,5,9,1,3,6]. N\u1EBFu ch\u1ECDn ph\u1EA7n t\u1EED
+    cu\u1ED1i c\xF9ng l\xE0m pivot, s\u1ED1 l\u01B0\u1EE3ng ph\xE9p so s\xE1nh trong
+    l\u1EA7n ph\xE2n ho\u1EA1ch \u0111\u1EA7u ti\xEAn l\xE0 bao nhi\xEAu?"
+  questionType: 3
+  answers:
+  - correctAnswer: 1
+    answer: 7
+  - correctAnswer: 0
+    answer: 6
+  - correctAnswer: 0
+    answer: 8
+  - correctAnswer: 0
+    answer: 4

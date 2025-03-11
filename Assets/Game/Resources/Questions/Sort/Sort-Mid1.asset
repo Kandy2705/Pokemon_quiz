@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Mid1
+  m_EditorClassIdentifier: 
+  question: "Trong Quick Sort, ph\u1EA7n t\u1EED \u0111\u01B0\u1EE3c ch\u1ECDn l\xE0m
+    \"pivot\" \u0111\xF3ng vai tr\xF2 g\xEC?"
+  questionType: 3
+  answers:
+  - correctAnswer: 1
+    answer: "Chia danh s\xE1ch th\xE0nh hai ph\u1EA7n theo gi\xE1 tr\u1ECB l\u1EDBn
+      h\u01A1n v\xE0 nh\u1ECF h\u01A1n pivot."
+  - correctAnswer: 0
+    answer: "S\u1EAFp x\u1EBFp danh s\xE1ch theo th\u1EE9 t\u1EF1 t\u0103ng d\u1EA7n."
+  - correctAnswer: 0
+    answer: "X\xE1c \u0111\u1ECBnh ph\u1EA7n t\u1EED nh\u1ECF nh\u1EA5t trong danh
+      s\xE1ch."
+  - correctAnswer: 0
+    answer: "X\xE1c \u0111\u1ECBnh ph\u1EA7n t\u1EED l\u1EDBn nh\u1EA5t trong danh
+      s\xE1ch."

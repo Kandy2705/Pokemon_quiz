@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Easy5
+  m_EditorClassIdentifier: 
+  question: "Trong c\xE2y nh\u1ECB ph\xE2n t\xECm ki\u1EBFm, gi\xE1 tr\u1ECB nh\u1ECF
+    nh\u1EA5t lu\xF4n n\u1EB1m \u1EDF \u0111\xE2u?"
+  questionType: 2
+  answers:
+  - correctAnswer: 0
+    answer: "Kh\xF4ng th\u1EC3 x\xE1c \u0111\u1ECBnh \u0111\u01B0\u1EE3c"
+  - correctAnswer: 0
+    answer: "N\xFAt g\u1ED1c"
+  - correctAnswer: 0
+    answer: "N\xFAt l\xE1 b\xEAn ph\u1EA3i cu\u1ED1i c\xF9ng"
+  - correctAnswer: 1
+    answer: "N\xFAt l\xE1 b\xEAn tr\xE1i cu\u1ED1i c\xF9ng"

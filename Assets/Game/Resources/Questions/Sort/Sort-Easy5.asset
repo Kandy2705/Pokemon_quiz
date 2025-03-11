@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Easy5
+  m_EditorClassIdentifier: 
+  question: "Thu\u1EADt to\xE1n n\xE0o trong s\u1ED1 sau \u0111\xE2y s\u1EED d\u1EE5ng
+    chi\u1EBFn l\u01B0\u1EE3c \"Chia \u0111\u1EC3 tr\u1ECB\"?"
+  questionType: 3
+  answers:
+  - correctAnswer: 0
+    answer: Bubble Sort
+  - correctAnswer: 0
+    answer: ' Insertion Sort'
+  - correctAnswer: 0
+    answer: Selection Sort
+  - correctAnswer: 1
+    answer: Quick Sort

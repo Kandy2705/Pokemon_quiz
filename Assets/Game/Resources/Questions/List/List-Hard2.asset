@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Hard2
+  m_EditorClassIdentifier: 
+  question: "Node newNode = new Node(data)\nnewNode.next = head\nhead.prev = newNode\nhead
+    = newNode\n\nK\u1EBFt qu\u1EA3 c\u1EE7a \u0111o\u1EA1n code sau l\xE0 g\xEC n\u1EBFu
+    \xE1p d\u1EE5ng tr\xEAn danh s\xE1ch li\xEAn k\u1EBFt k\xE9p?"
+  questionType: 1
+  answers:
+  - correctAnswer: 0
+    answer: "Th\xEAm m\u1ED9t ph\u1EA7n t\u1EED v\xE0o cu\u1ED1i danh s\xE1ch"
+  - correctAnswer: 0
+    answer: "X\xF3a ph\u1EA7n t\u1EED \u0111\u1EA7u ti\xEAn trong danh s\xE1ch"
+  - correctAnswer: 1
+    answer: "Th\xEAm m\u1ED9t ph\u1EA7n t\u1EED v\xE0o \u0111\u1EA7u danh s\xE1ch"
+  - correctAnswer: 0
+    answer: "G\xE2y l\u1ED7i v\xEC head kh\xF4ng c\xF3 thu\u1ED9c t\xEDnh prev"

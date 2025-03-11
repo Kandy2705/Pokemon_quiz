@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Sort-Easy
+  m_EditorClassIdentifier: 
+  monsterName: Sort-Easy
+  description: 
+  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
+  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
+  type: 3
+  maxHP: 100
+  attack: 50
+  defense: 50
+  spAttack: 50
+  spDefense: 50
+  speed: 50
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: 8a5dfd9c71c379d479fc3d5f54d41aa4, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 0be9b1a6a7d196d42a9d597945b4c746, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: b0184a380bab13f4fbeb24217e0e262a, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 064bd8264eab7674698d4d519e3aba94, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: ea773c9805618bd4fad891a221c6aa51, type: 2}
+    level: 0

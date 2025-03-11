@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Hard1
+  m_EditorClassIdentifier: 
+  question: "Node current = head\ndo:\n    print(current.data)\n    current = current.next\nwhile
+    current != head\n\n\u0110o\u1EA1n code sau th\u1EF1c hi\u1EC7n thao t\xE1c g\xEC
+    tr\xEAn danh s\xE1ch li\xEAn k\u1EBFt v\xF2ng?"
+  questionType: 1
+  answers:
+  - correctAnswer: 1
+    answer: "Duy\u1EC7t v\xE0 in t\u1EA5t c\u1EA3 ph\u1EA7n t\u1EED trong danh s\xE1ch
+      v\xF2ng"
+  - correctAnswer: 0
+    answer: "In ra ph\u1EA7n t\u1EED \u0111\u1EA7u ti\xEAn duy nh\u1EA5t"
+  - correctAnswer: 0
+    answer: "G\xE2y l\u1ED7i v\xEC kh\xF4ng c\xF3 \u0111i\u1EC1u ki\u1EC7n tho\xE1t
+      kh\u1ECFi v\xF2ng l\u1EB7p"
+  - correctAnswer: 0
+    answer: "Kh\xF4ng ho\u1EA1t \u0111\u1ED9ng v\u1EDBi danh s\xE1ch v\xF2ng"

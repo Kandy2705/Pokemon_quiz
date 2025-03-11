@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: Sort-Medium
+  m_EditorClassIdentifier: 
+  monsterName: Sort Meme Ver 2
+  description: "Ta v\u1EDDn nhau bubbleball, Chu\u1EA9n b\u1ECB Sort t\u1EBF b\xE0o
+    n\xE3o \u0111i"
+  frontSprite: {fileID: 21300000, guid: 9b0e6fc5f36b9ec4197e23d680b3707a, type: 3}
+  backSprite: {fileID: 21300000, guid: 1287bcbc279066d459ff39bc3b587760, type: 3}
+  type: 3
+  maxHP: 200
+  attack: 70
+  defense: 100
+  spAttack: 50
+  spDefense: 60
+  speed: 70
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: 5e4ff14c265f7074b93cecf7d51f9389, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c86b4cbf1ea1ca84dac4cadff4a8d354, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 45eafe6f7245df04985a8cfb35d8d551, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 365f105545a0d9e409109a4d93e9b48f, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: a8bdcd92a16cf38499f636d282d0ea4f, type: 2}
+    level: 0

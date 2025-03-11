@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Mid3
+  m_EditorClassIdentifier: 
+  question: "Trong danh s\xE1ch v\xF2ng (Circular Linked List), l\xE0m th\u1EBF n\xE0o
+    \u0111\u1EC3 bi\u1EBFt r\u1EB1ng danh s\xE1ch \u0111\xE3 \u0111\u01B0\u1EE3c
+    duy\u1EC7t h\u1EBFt?"
+  questionType: 1
+  answers:
+  - correctAnswer: 0
+    answer: "Duy\u1EC7t \u0111\u1EBFn khi g\u1EB7p null"
+  - correctAnswer: 1
+    answer: "Duy\u1EC7t \u0111\u1EBFn khi quay l\u1EA1i n\xFAt \u0111\u1EA7u ti\xEAn"
+  - correctAnswer: 0
+    answer: "Duy\u1EC7t \u0111\u1EBFn khi quay l\u1EA1i n\xFAt \u0111\u1EA7u ti\xEAn"
+  - correctAnswer: 0
+    answer: "Danh s\xE1ch v\xF2ng kh\xF4ng th\u1EC3 duy\u1EC7t h\u1EBFt"

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Easy2
+  m_EditorClassIdentifier: 
+  question: "Trong c\xE2y nh\u1ECB ph\xE2n, th\u1EE9 t\u1EF1 duy\u1EC7t Pre-order
+    \u0111\u01B0\u1EE3c th\u1EF1c hi\u1EC7n nh\u01B0 th\u1EBF n\xE0o?"
+  questionType: 2
+  answers:
+  - correctAnswer: 1
+    answer: " G\u1ED1c - Tr\xE1i - Ph\u1EA3i"
+  - correctAnswer: 0
+    answer: "Tr\xE1i - G\u1ED1c - Ph\u1EA3i"
+  - correctAnswer: 0
+    answer: "Tr\xE1i - Ph\u1EA3i - G\u1ED1c"
+  - correctAnswer: 0
+    answer: "G\u1ED1c - Ph\u1EA3i - Tr\xE1i"

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Sort-Easy4
+  m_EditorClassIdentifier: 
+  question: "Merge Sort c\xF3 \u0111\u1ED9 ph\u1EE9c t\u1EA1p th\u1EDDi gian trong
+    tr\u01B0\u1EDDng h\u1EE3p x\u1EA5u nh\u1EA5t l\xE0:"
+  questionType: 3
+  answers:
+  - correctAnswer: 0
+    answer: o(n)
+  - correctAnswer: 0
+    answer: o(logn)
+  - correctAnswer: 1
+    answer: o(nlogn)
+  - correctAnswer: 0
+    answer: o(n^2)

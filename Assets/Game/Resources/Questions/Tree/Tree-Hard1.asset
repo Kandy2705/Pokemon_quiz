@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Hard1
+  m_EditorClassIdentifier: 
+  question: "M\u1ED9t c\xE2y nh\u1ECB ph\xE2n \u0111\u1EA7y \u0111\u1EE7 (full binary
+    tree) c\xF3 \uFFFD\nn n\xFAt. S\u1ED1 l\u01B0\u1EE3ng n\xFAt l\xE1 (leaf nodes)
+    c\u1EE7a c\xE2y l\xE0 bao nhi\xEAu?"
+  questionType: 2
+  answers:
+  - correctAnswer: 0
+    answer: n/2
+  - correctAnswer: 1
+    answer: (n+1)/2
+  - correctAnswer: 0
+    answer: n - 1
+  - correctAnswer: 0
+    answer: (n - 1)/2

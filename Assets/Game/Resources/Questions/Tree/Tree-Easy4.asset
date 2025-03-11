@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Easy4
+  m_EditorClassIdentifier: 
+  question: "S\u1ED1 l\u01B0\u1EE3ng n\xFAt trong m\u1ED9t c\xE2y nh\u1ECB ph\xE2n
+    ho\xE0n ch\u1EC9nh \u1EDF m\u1EE9c th\u1EE9 k l\xE0:"
+  questionType: 2
+  answers:
+  - correctAnswer: 0
+    answer: 2^k - 1
+  - correctAnswer: 0
+    answer: 2^k
+  - correctAnswer: 1
+    answer: 2^(k - 1)
+  - correctAnswer: 0
+    answer: k^2

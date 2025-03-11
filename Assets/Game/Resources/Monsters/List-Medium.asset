@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2888b9c763a1c9e4197f6c3777c643ba, type: 3}
+  m_Name: List-Medium
+  m_EditorClassIdentifier: 
+  monsterName: List Meme - Ver2
+  description: "B\u1EA1n \u0111ang c\u1ED1 ti\u1EBFp c\u1EADn t\xF4i ? , nh\u1EEFng
+    c\xE2u h\u1ECFi ti\u1EBFp theo v\u1EC1 List s\u1EBD kh\xF3 nhai h\u01A1n \u0111\u1EA5y"
+  frontSprite: {fileID: 21300000, guid: ade6afd9cbd5c1740bf6046d9a18b97d, type: 3}
+  backSprite: {fileID: 21300000, guid: 7b639ec515c410e4ebf517fc3899e3bd, type: 3}
+  type: 1
+  maxHP: 200
+  attack: 70
+  defense: 80
+  spAttack: 100
+  spDefense: 75
+  speed: 100
+  learnAbleMoves:
+  - moveBase: {fileID: 11400000, guid: de630ee6429593741b5961db40a7f11e, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
+    level: 0
+  learnAbleQuestions:
+  - question: {fileID: 11400000, guid: 3b8feb9d8ba68e046ae8f4903e75ef15, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 662b232bd4bf83a4aad7a44aca71c890, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 83b0900a1c636d3498ae5b14064aadc7, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: 4b11bd5109d9deb459026b9fb0f85395, type: 2}
+    level: 0
+  - question: {fileID: 11400000, guid: c06df1d40b2f2b54f8689cee26adbeb4, type: 2}
+    level: 0

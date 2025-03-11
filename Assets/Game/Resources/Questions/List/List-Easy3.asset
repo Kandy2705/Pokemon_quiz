@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: List-Easy3
+  m_EditorClassIdentifier: 
+  question: "Danh s\xE1ch t\u0129nh v\xE0 danh s\xE1ch li\xEAn k\u1EBFt kh\xE1c nhau
+    \u1EDF \u0111\u1EB7c \u0111i\u1EC3m n\xE0o sau \u0111\xE2y?"
+  questionType: 1
+  answers:
+  - correctAnswer: 0
+    answer: "K\xEDch th\u01B0\u1EDBc c\u1ED1 \u0111\u1ECBnh so v\u1EDBi k\xEDch th\u01B0\u1EDBc
+      linh ho\u1EA1t"
+  - correctAnswer: 0
+    answer: "Cho ph\xE9p truy c\u1EADp ng\u1EABu nhi\xEAn so v\u1EDBi ch\u1EC9 truy
+      c\u1EADp tu\u1EA7n t\u1EF1"
+  - correctAnswer: 0
+    answer: "Ti\xEAu th\u1EE5 b\u1ED9 nh\u1EDB t\u0129nh so v\u1EDBi ti\xEAu th\u1EE5
+      b\u1ED9 nh\u1EDB \u0111\u1ED9ng"
+  - correctAnswer: 1
+    answer: "T\u1EA5t c\u1EA3 c\xE1c c\xE2u tr\xEAn \u0111\u1EC1u \u0111\xFAng"

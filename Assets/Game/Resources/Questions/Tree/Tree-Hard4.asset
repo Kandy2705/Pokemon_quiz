@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Tree-Hard4
+  m_EditorClassIdentifier: 
+  question: "X\xE9t m\u1ED9t c\xE2y \u0111\u1ECF-\u0111en (Red-Black Tree) v\u1EDBi
+    \nn n\xFAt. \u0110i\u1EC1u n\xE0o sau \u0111\xE2y lu\xF4n \u0111\xFAng?"
+  questionType: 2
+  answers:
+  - correctAnswer: 0
+    answer: "Chi\u1EC1u cao c\u1EE7a c\xE2y l\xE0 O(n)"
+  - correctAnswer: 1
+    answer: "M\u1ED9t n\xFAt \u0111\u1ECF kh\xF4ng th\u1EC3 c\xF3 cha l\xE0 n\xFAt
+      \u0111\u1ECF."
+  - correctAnswer: 0
+    answer: "T\u1EA5t c\u1EA3 c\xE1c n\xFAt l\xE1 c\xF3 c\xF9ng m\u1EE9c (level)."
+  - correctAnswer: 0
+    answer: "T\u1EA5t c\u1EA3 c\xE1c n\xFAt b\xEAn tr\xE1i c\u1EE7a m\u1ED9t n\xFAt
+      \u0111\u1EC1u nh\u1ECF h\u01A1n n\xF3."
