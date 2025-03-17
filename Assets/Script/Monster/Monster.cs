@@ -50,6 +50,8 @@ public class Monster
     public int SpDefense { get { return Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5; } }
     public int Speed { get { return Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5; } }
 
+    public int Money { get { return Base.Money * this.Level; } }
+
     public bool TakeDamage(Move move, Monster attacker, bool correct, float bonusDmg)
     {
         float modifiers = Random.Range(0.85f, 1f);

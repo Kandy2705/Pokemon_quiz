@@ -1,8 +1,9 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy, QuestionAnswer};
@@ -18,6 +19,9 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] Movement playerMovement;
 
+    public int money = 0;
+    [SerializeField] GameObject moneyText;
+
     BattleState state;
     int currAction;
     int currMove;
@@ -28,6 +32,31 @@ public class BattleSystem : MonoBehaviour
     int escapeAttempts;
 
     Collider2D Collision;
+
+
+    public void SetMoney(int newMoney)
+    {
+        money = newMoney;
+        UpdateMoneyUI();
+    }
+    void UpdateMoneyUI()
+    {
+        if (moneyText != null)
+        {
+            Text textComponent = moneyText.GetComponent<Text>();
+            if (textComponent != null) { 
+                textComponent.text = money.ToString();
+            }
+            else
+            {
+                Debug.LogWarning("Không tìm thấy component Text trên moneyTextObject.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("moneyTextObject chưa được gán trong Inspector.");
+        }
+    }
 
     public void StartBattle(MonsterBase Enemy, Monster Player, Collider2D collision){
         Collision = collision;
@@ -42,7 +71,7 @@ public class BattleSystem : MonoBehaviour
         enemy.Setup(Enemy);
         enemyHUD.SetData(enemy.Monster);
 
-        Debug.Log(player.Monster.HP);
+        //Debug.Log(player.Monster.HP);
 
         dialogBox.SetMoveNames(player.Monster.Moves);
         yield return dialogBox.TypeDialog($"A monster {enemy.Monster.Base.Name} appear");
@@ -121,6 +150,12 @@ public class BattleSystem : MonoBehaviour
             if(Collision != null){
                 Collision.gameObject.SetActive(false);
             }
+
+            money += enemy.Monster.Base.Money;
+            UpdateMoneyUI();
+
+            PlayerPrefs.SetInt("Money", money);
+
             yield return new WaitForSeconds(2f);
             onBattleOver(true);
         }

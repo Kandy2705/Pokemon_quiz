@@ -20,6 +20,7 @@ public class MonsterBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
+    [SerializeField] int money = 50;
     [SerializeField] List<LearnAbleMove> learnAbleMoves;
     [SerializeField] List<LearnAbleQuestion> learnAbleQuestions;
 
@@ -35,6 +36,7 @@ public class MonsterBase : ScriptableObject
     public int SpAttack { get { return spAttack; } }
     public int SpDefense { get { return spDefense;} }
     public int Speed { get { return speed;} }
+    public int Money { get { return money; } }
     public List<LearnAbleMove> LearnAbleMoves { get { return learnAbleMoves;} }
     
     public List<LearnAbleQuestion> LearnAbleQuestions { get { return learnAbleQuestions; } }

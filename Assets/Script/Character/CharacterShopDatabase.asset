@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7465d29ac66b9a3429992351af03c7e1, type: 3}
+  m_Name: CharacterShopDatabase
+  m_EditorClassIdentifier: 
+  characters:
+  - image: {fileID: -676222779, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: Alex
+    introduction: 'Backstory: Alex grew up in a small village but always dreamed
+      of exploring the world. Now, they travel across lands, seeking adventure and
+      uncovering hidden mysteries.'
+    price: 0
+    isPurchased: 1
+    isSelected: 0
+  - image: {fileID: -332135531, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: Marcus
+    introduction: ' A seasoned warrior known for his unyielding strength and loyalty.'
+    price: 600
+    isPurchased: 1
+    isSelected: 1
+  - image: {fileID: -1586882438, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: Isabella
+    introduction: A skilled archer with a keen eye and a sharp strategic mind.
+    price: 1300
+    isPurchased: 0
+    isSelected: 0
+  - image: {fileID: -1836302985, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: Sakura
+    introduction: A wise mage who wields powerful magic and ancient knowledge.
+    price: 1600
+    isPurchased: 0
+    isSelected: 0
+  - image: {fileID: -1427503497, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: Nathan
+    introduction: A resourceful rogue, adept at stealth and quick thinking in dangerous
+      situations.
+    price: 2000
+    isPurchased: 0
+    isSelected: 0
+  - image: {fileID: -355475041, guid: be748f32e62bf0f4898b0555d35e186c, type: 3}
+    name: Sasuke
+    introduction: 'A cunning rogue whose nimble fingers and quick wit let them slip
+      through the shadows and outsmart their foes.  '
+    price: 2500
+    isPurchased: 0
+    isSelected: 0
+  - image: {fileID: -344705900, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
+    name: MA Ghost
+    introduction: A fearless adventurer with an insatiable curiosity for the unknown.
+    price: 2500
+    isPurchased: 0
+    isSelected: 0

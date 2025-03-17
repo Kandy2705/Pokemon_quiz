@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,9 +13,16 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] GameObject DeathScene;
+    [SerializeField] private GameObject moneyObject;
+    [SerializeField] private GameObject buttonStop;
 
     private void Start()
     {
+        int savedMoney = PlayerPrefs.GetInt("Money", 0);
+        battleSystem.SetMoney(savedMoney);
+        moneyObject.SetActive(true);
+        buttonStop.SetActive(true);
+
         playerController.onEncountered += StartBattle;
         battleSystem.onBattleOver += EndBattle;
 
@@ -35,6 +43,7 @@ public class GameController : MonoBehaviour
         state = GameState.FreeRoam;
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
+        moneyObject.SetActive(true);
     }
 
     void StartBattle(MonsterBase Enemy, Monster Player, Collider2D Collision)
@@ -42,12 +51,23 @@ public class GameController : MonoBehaviour
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
+        moneyObject.SetActive(false);
 
         battleSystem.StartBattle(Enemy, Player, Collision);
     }
 
     private void Update()
     {
+        if (battleSystem.isActiveAndEnabled)
+        {
+            moneyObject.SetActive(false);
+            buttonStop.SetActive(false);
+        }
+        else
+        {
+            moneyObject.SetActive(true);
+            buttonStop.SetActive(true);
+        }
         if (state == GameState.FreeRoam)
         {
             if (playerController.player.HP == 0)
