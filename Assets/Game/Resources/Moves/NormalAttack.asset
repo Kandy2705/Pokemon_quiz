@@ -18,3 +18,4 @@ MonoBehaviour:
   power: 20
   accuracy: 0
   pp: 0
+  sound: {fileID: 8300000, guid: 1c2ab87d90613b9409f556aca13235ba, type: 3}

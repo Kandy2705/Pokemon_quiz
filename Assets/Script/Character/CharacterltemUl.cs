@@ -42,6 +42,7 @@ public class CharacterltemUl : MonoBehaviour
         Character character = shopDatabase.GetCharacter(currentIndex);
         if (character.isPurchased)
         {
+            AudioManager.i.PlaySfx(AudioId.Select);
             DeselectAllCharacters();
             character.isSelected = true;
             characterPriceText.text = "Selected";
@@ -51,6 +52,7 @@ public class CharacterltemUl : MonoBehaviour
         {
             if (money >= character.price && !character.isPurchased)
             {
+                AudioManager.i.PlaySfx(AudioId.PurchaseSuccess);
                 money -= character.price;
                 PlayerPrefs.SetInt("Money", money);
                 int temp = PlayerPrefs.GetInt("Money", 0);
@@ -60,6 +62,10 @@ public class CharacterltemUl : MonoBehaviour
                 character.isSelected = true;
                 characterPriceText.text = "Selected";
                 characterPurchaseButton.GetComponent<Image>().color = Color.blue;
+            }
+            else
+            {
+                AudioManager.i.PlaySfx(AudioId.PurchaseFail);
             }
         }
 

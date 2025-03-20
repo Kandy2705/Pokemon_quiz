@@ -113,12 +113,12 @@ TextureImporter:
       name: charall_0
       rect:
         serializedVersion: 2
-        x: 67
-        y: 936
-        width: 320
-        height: 348
+        x: 46
+        y: 1525
+        width: 366
+        height: 361
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: charall_1
       rect:
         serializedVersion: 2
-        x: 583
-        y: 944
-        width: 315
-        height: 333
+        x: 553
+        y: 1520
+        width: 372
+        height: 369
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -155,12 +155,12 @@ TextureImporter:
       name: charall_2
       rect:
         serializedVersion: 2
-        x: 69
-        y: 515
-        width: 316
-        height: 354
+        x: 38
+        y: 1116
+        width: 366
+        height: 361
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -176,12 +176,12 @@ TextureImporter:
       name: charall_3
       rect:
         serializedVersion: 2
-        x: 583
-        y: 523
-        width: 316
-        height: 346
+        x: 562
+        y: 1113
+        width: 366
+        height: 364
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,12 +197,12 @@ TextureImporter:
       name: charall_4
       rect:
         serializedVersion: 2
-        x: 76
-        y: 76
-        width: 317
-        height: 355
+        x: 51
+        y: 640
+        width: 356
+        height: 393
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,12 +218,12 @@ TextureImporter:
       name: charall_5
       rect:
         serializedVersion: 2
-        x: 591
-        y: 56
-        width: 308
-        height: 350
+        x: 559
+        y: 643
+        width: 366
+        height: 390
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,6 +231,27 @@ TextureImporter:
       bones: []
       spriteID: c00c55d45e81c8b468ff8ac7288f72f5
       internalID: -676222779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: charall_6
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 139
+        width: 361
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fad0ff21c524cc4bb1fae8725cf43b4
+      internalID: 1946802097
       vertices: []
       indices: 
       edges: []
@@ -252,6 +273,7 @@ TextureImporter:
       charall_3: -332135531
       charall_4: -344705900
       charall_5: -676222779
+      charall_6: 1946802097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

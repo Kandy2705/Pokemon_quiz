@@ -235,9 +235,11 @@ GameObject:
   - component: {fileID: 2033882717060243553}
   - component: {fileID: 2622538668254430938}
   - component: {fileID: 8146988121401483616}
+  - component: {fileID: 128479677927698753}
+  - component: {fileID: 2761447633241646448}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +302,7 @@ SpriteRenderer:
   m_SortingLayerID: -442234013
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7152930139536384079, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  m_Sprite: {fileID: 1391250084, guid: 62116b0e33e3fea43b2cb82d0a33515c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -422,7 +424,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
+    oldSize: {x: 1.5775, y: 1.98}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -459,6 +461,36 @@ PolygonCollider2D:
       - {x: 0.35273457, y: 0.58127904}
       - {x: 0.24122429, y: 0.61325157}
   m_UseDelaunayMesh: 0
+--- !u!114 &128479677927698753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450430716341815843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library: []
+  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: a631de3e4465c6444ad5c6832b9bda21, type: 3}
+--- !u!114 &2761447633241646448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2450430716341815843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CategoryHash: 1.8625731e-11
+  m_labelHash: 3.7544993e-28
+  m_SpriteKey: 0
+  m_SpriteHash: 0
 --- !u!1 &2712072113460430520
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +772,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: ChangeAudio
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 0c15bb9b780e9df459bc0083ede93822, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &2924553431241450695
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +901,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2924553431241450695}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &4263281646371709281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,6 +931,7 @@ MonoBehaviour:
   characterNameText: {fileID: 0}
   characterImg: {fileID: 0}
   shopDatabase: {fileID: 0}
+  sceneMusic: {fileID: 0}
 --- !u!1 &3126243062121516159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1671,50 @@ PrefabInstance:
     - target: {fileID: 684058841390452240, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
       propertyPath: m_Name
       value: DeathScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932966248632859556, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789467108658239677, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789467108658239677, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.25397325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789467108658239677, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8459352850943603536, guid: 2007312d920627345956b5cd2abeacf6, type: 3}
       propertyPath: m_Pivot.x

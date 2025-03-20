@@ -13,6 +13,12 @@ public class DialogManager : MonoBehaviour
     public event Action OnShowDialog;
     public event Action OnCloseDialog;
 
+    private bool isShowing = false;
+    private Coroutine typingCoroutine;
+
+    private bool canAdvanceLine = false;
+    private bool isDialogCompleted = false;
+
     public static DialogManager Instance{ get; private set; }
     private void Awake() {
         Instance = this; 
@@ -23,25 +29,48 @@ public class DialogManager : MonoBehaviour
     bool isTyping;
 
     public IEnumerator ShowDialog(Dialog dialog){
-        yield return new WaitForEndOfFrame();
+        if (isShowing)
+        {
+            yield break;
+        }
         
+        isShowing = true;
+        isDialogCompleted = false;
         OnShowDialog?.Invoke();
 
         this.dialog = dialog;
+        currentLine = 0;
         dialogBox.SetActive(true);
-        StartCoroutine(TypeDialog(dialog.Lines[0]));
+        AudioManager.i.PlaySfx(AudioId.UISelect);
+
+        if (typingCoroutine != null) { 
+            StopCoroutine(typingCoroutine);
+        }
+
+        typingCoroutine = StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+
+        yield return new WaitUntil(() => isDialogCompleted);
+        dialogBox.SetActive(false);
+        OnCloseDialog?.Invoke();
+        isShowing = false;
     }
 
     public void HandleUpdate(){
-        if (Input.GetKeyDown(KeyCode.Z) && !isTyping){
-            ++currentLine;
-            if (currentLine < dialog.Lines.Count){
+
+        if (!dialogBox.activeSelf || isTyping) return;
+
+        if (Input.GetKeyUp(KeyCode.Z) && canAdvanceLine)
+        {
+            if (currentLine < dialog.Lines.Count - 1)
+            {
+                currentLine++;
+                AudioManager.i.PlaySfx(AudioId.UISelect);
+                canAdvanceLine = false;
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
             }
-            else{
-                currentLine = 0;
-                dialogBox.SetActive(false);
-                OnCloseDialog?.Invoke();
+            else
+            {
+                isDialogCompleted = true;
             }
         }
     }
@@ -56,5 +85,11 @@ public class DialogManager : MonoBehaviour
             yield return new WaitForSeconds(1f/letterPerSecond);
         }
         isTyping = false;
+        canAdvanceLine = true;
+        if (currentLine == dialog.Lines.Count) {
+            yield return new WaitForSeconds(1f / letterPerSecond);
+            isDialogCompleted = true;
+        }
+
     }
 }

@@ -13,10 +13,13 @@ public class MoveBase : ScriptableObject
     [SerializeField] int accuracy;
     [SerializeField] int pp;
 
+    [SerializeField] AudioClip sound;
+
     public string Name { get { return moveName; } }
     public string Description { get { return description; } }
     public MonsterType Type { get { return type; } }
     public int Power { get { return power; } }
     public int Accuracy { get { return accuracy; } }
     public int Pp { get { return pp; } }
+    public AudioClip Sound => sound;
 }

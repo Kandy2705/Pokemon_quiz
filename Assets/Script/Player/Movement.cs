@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.U2D.Animation;
 
 public class Movement : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class Movement : MonoBehaviour
         player = new Monster(playerBase, 5);
         //Take the animation in animator
         animator = GetComponent<Animator>();
+    }
+    private void Update()
+    {
+        HandleUpdate();
     }
 
     public void HandleUpdate()
@@ -105,7 +110,6 @@ public class Movement : MonoBehaviour
         {
             if(Random.Range(1, 101) <= 10)
             {
-                Debug.Log("grass touching");
                 animator.SetBool("isMoving", false);
                 onEncountered(randomGrassMonster, player, null);
             }

@@ -19,4 +19,16 @@ public class CharacterShopDatabase : ScriptableObject
     {
         characters[index].isPurchased = true;
     }
+
+    public string GetNamePlayer()
+    {
+        for (int i = 0; i < characters.Length; i++) {
+            if (characters[i].isSelected)
+            {
+                return characters[i].name;
+            }
+        }
+
+        return "Player";
+    }
 }

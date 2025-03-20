@@ -13,10 +13,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] Image characterImg;
 
     [SerializeField] CharacterShopDatabase shopDatabase;
+    [SerializeField] AudioClip sceneMusic;
 
     private int selectedIndex = 0;
     private void Start()
     {
+        if (sceneMusic != null)
+            AudioManager.i.PlayMusic(sceneMusic, true, true);
         int money = PlayerPrefs.GetInt("Money", 0);
         UpdateMoneyUI(money);
 

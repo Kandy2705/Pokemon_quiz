@@ -9,8 +9,14 @@ public class BattleHUD : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] HPBar hpBar;
 
-    public void SetData(Monster monster){
-        nameText.text = monster.Base.Name;
+    public void SetData(Monster monster, CharacterShopDatabase shopDatabase){
+        if (shopDatabase == null) {
+            nameText.text = monster.Base.Name;
+        }
+        else
+        {
+            nameText.text = shopDatabase.GetNamePlayer();
+        }
         levelText.text = "Lvl " + monster.Level;
         hpBar.SetHP((float)monster.HP / monster.MaxHP);
     }

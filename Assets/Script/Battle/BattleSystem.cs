@@ -16,6 +16,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] BattleHUD enemyHUD;
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] MonsterQuestion monsterQuestion;
+    [SerializeField] CharacterShopDatabase characterShopDatabase;
+    [SerializeField] AudioClip wildBattleMusic;
+    [SerializeField] AudioClip battleVictoryMusic;
 
     [SerializeField] Movement playerMovement;
 
@@ -63,18 +66,20 @@ public class BattleSystem : MonoBehaviour
         enemy._base = Enemy;
         player.Monster = Player;
         StartCoroutine(SetupBattle(new Monster(Enemy, Player.Level <= 5 ? Player.Level + Random.Range(0, 6): (Random.Range(0, 2) == 0 ? Player.Level + Random.Range(0, 6): Player.Level - Random.Range(0, 6))), Player));
+
+        AudioManager.i.PlayMusic(wildBattleMusic);
     }
 
     public IEnumerator SetupBattle(Monster Enemy, Monster Player){
         player.Setup(Player);
-        playerHUD.SetData(player.Monster);
+        playerHUD.SetData(player.Monster, characterShopDatabase);
         enemy.Setup(Enemy);
-        enemyHUD.SetData(enemy.Monster);
+        enemyHUD.SetData(enemy.Monster, null);
 
         //Debug.Log(player.Monster.HP);
 
         dialogBox.SetMoveNames(player.Monster.Moves);
-        yield return dialogBox.TypeDialog($"A monster {enemy.Monster.Base.Name} appear");
+        yield return dialogBox.TypeDialog($"Xuất hiện quái vật {enemy.Monster.Base.Name}");
         yield return new WaitForSeconds(1f);
 
         escapeAttempts = 0;
@@ -85,7 +90,7 @@ public class BattleSystem : MonoBehaviour
     void PlayerAction()
     {
         state = BattleState.PlayerAction;
-        StartCoroutine(dialogBox.TypeDialog("Choose an action"));
+        StartCoroutine(dialogBox.TypeDialog("Chọn hành động"));
         dialogBox.EnableActionSelector(true);
     }
 
@@ -132,26 +137,46 @@ public class BattleSystem : MonoBehaviour
         var move = player.Monster.Moves[currMove];
         if (correct)
         {
-            yield return dialogBox.TypeDialog($"{player.Monster.Base.Name} used {move.Base.Name} with full damage");
+            yield return dialogBox.TypeDialog($"{player.Monster.Base.Name} sử dụng {move.Base.Name} gây toàn bộ sát thương");
         }
         else
         {
-            yield return dialogBox.TypeDialog($"{player.Monster.Base.Name} used {move.Base.Name}, but you answered wrong so no damage");
+            yield return dialogBox.TypeDialog($"{player.Monster.Base.Name} sử dụng {move.Base.Name}, nhưng trả lời sai nên không sát thương");
         }
         player.PlayerAttackAnimation();
-        if (correct) enemy.PlayHitAnimation();
+        AudioManager.i.PlaySfx(move.Base.Sound, true);
+        Debug.Log(move.Base.Sound);
+
+        if (correct)
+        {
+            enemy.PlayHitAnimation();
+            AudioManager.i.PlaySfx(AudioId.Hit, true);
+            Debug.Log(AudioId.Hit);
+        }
         yield return new WaitForSeconds(1f);
 
         bool isFainted = enemy.Monster.TakeDamage(move, player.Monster, correct, bonusDmg);
         StartCoroutine(enemyHUD.UpdateHP(enemy.Monster));
         if (isFainted) {
-            yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} is fainted");
+            yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} đã ngất");
             enemy.PlayFaintAnimation();
             if(Collision != null){
                 Collision.gameObject.SetActive(false);
             }
 
-            money += enemy.Monster.Base.Money;
+            AudioManager.i.PlayMusic(battleVictoryMusic);
+
+
+
+            if (enemy.Monster.Level > player.Monster.Level)
+            {
+                money += enemy.Monster.Money;
+            }
+            else
+            {
+                float tempRadio = (float)enemy.Monster.Level / player.Monster.Level;
+                money += (Mathf.FloorToInt(enemy.Monster.Money * tempRadio));
+            }
             UpdateMoneyUI();
 
             PlayerPrefs.SetInt("Money", money);
@@ -170,20 +195,28 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.EnemyMove;
 
         var move = enemy.Monster.GetRandomMove();
-        yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} is using {move.Base.Name}");
+        yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} đang sử dụng {move.Base.Name}");
         yield return new WaitForSeconds(1f);
 
         bool lucky = Random.Range(0, 100) <= 70;
 
         bool isFainted = player.Monster.TakeDamage(move, enemy.Monster, lucky, 1);
-        yield return dialogBox.TypeDialog(lucky ? $"{enemy.Monster.Base.Name} hit you !!!": $"{enemy.Monster.Base.Name} is miss.");
+        yield return dialogBox.TypeDialog(lucky ? $"{enemy.Monster.Base.Name} đã trúng bạn!!!" : $"{enemy.Monster.Base.Name} đã trượt.");
         yield return new WaitForSeconds(1f);
         enemy.PlayerAttackAnimation();
-        if (lucky) player.PlayHitAnimation();
+        AudioManager.i.PlaySfx(move.Base.Sound, true);
+        Debug.Log(move.Base.Sound);
+        if (lucky)
+        {
+            player.PlayHitAnimation();
+            AudioManager.i.PlaySfx(AudioId.Hit, true);
+            Debug.Log(AudioId.Hit);
+
+        }
         yield return new WaitForSeconds(1f);
         StartCoroutine(playerHUD.UpdateHP(player.Monster));
         if (isFainted) {
-            yield return dialogBox.TypeDialog($"You are dead. BYE BYE !!!");
+            yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN VÀ BYE!!!");
             player.PlayFaintAnimation();
             yield return new WaitForSeconds(2f);
             onBattleOver(false);
@@ -228,6 +261,7 @@ public class BattleSystem : MonoBehaviour
         dialogBox.UpdateAnswerSelection(currAnswer);
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            AudioManager.i.PlaySfx(AudioId.UISelect);
             float multiplyDame = monsterQuestion.timer.timerValue;
             correct = enemy.Monster.Questions[randomQuestion].Base.Answers[currAnswer].correctAnswer;
             monsterQuestion.EnableMonsterQuestion(false);
@@ -273,6 +307,7 @@ public class BattleSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            AudioManager.i.PlaySfx(AudioId.UISelect);
             QuestionAnswer();
         }
     }
@@ -281,14 +316,16 @@ public class BattleSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if(currAction < 1)
+            AudioManager.i.PlaySfx(AudioId.UISelect);
+            if (currAction < 1)
             {
                 ++currAction;
             }
         }
         else if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(currAction > 0)
+            AudioManager.i.PlaySfx(AudioId.UISelect);
+            if (currAction > 0)
             {
                 --currAction;
             }
@@ -296,7 +333,8 @@ public class BattleSystem : MonoBehaviour
         dialogBox.UpdateActionSelection(currAction);
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            if(currAction == 0)
+            AudioManager.i.PlaySfx(AudioId.UISelect);
+            if (currAction == 0)
             {
                 //Fight
                 PlayerMove();
@@ -318,7 +356,7 @@ public class BattleSystem : MonoBehaviour
         ++escapeAttempts;
         if(enemySpeed < playerSpeed)
         {
-            yield return dialogBox.TypeDialog($"Ran away safely !");
+            yield return dialogBox.TypeDialog($"Chạy trốn an toàn !");
             onBattleOver(true);
         }
         else
@@ -328,14 +366,14 @@ public class BattleSystem : MonoBehaviour
 
             if(Random.Range(0, 256) < f)
             {
-                yield return dialogBox.TypeDialog($"Ran away safely !");
+                yield return dialogBox.TypeDialog($"Chạy trốn an toàn !");
                 dialogBox.EnableActionSelector(false);
                 onBattleOver(true);
                 playerMovement.transform.Translate(Vector3.up*0.5f);
             }
             else
             {
-                yield return dialogBox.TypeDialog($"Can't escape");
+                yield return dialogBox.TypeDialog($"Không thể chạy trốn");
                 state = BattleState.PlayerAction;
                 PlayerAction();
             }

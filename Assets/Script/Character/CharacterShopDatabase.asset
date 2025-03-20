@@ -21,24 +21,28 @@ MonoBehaviour:
     price: 0
     isPurchased: 1
     isSelected: 0
+    spriteLibraryAsset: {fileID: 7108339969198208228, guid: 18bbd25d67b34f44e9ff91d675a4a57f, type: 3}
   - image: {fileID: -332135531, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: Marcus
     introduction: ' A seasoned warrior known for his unyielding strength and loyalty.'
     price: 600
     isPurchased: 1
-    isSelected: 1
+    isSelected: 0
+    spriteLibraryAsset: {fileID: 0}
   - image: {fileID: -1586882438, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: Isabella
     introduction: A skilled archer with a keen eye and a sharp strategic mind.
-    price: 1300
-    isPurchased: 0
-    isSelected: 0
+    price: 10
+    isPurchased: 1
+    isSelected: 1
+    spriteLibraryAsset: {fileID: 7108339969198208228, guid: a631de3e4465c6444ad5c6832b9bda21, type: 3}
   - image: {fileID: -1836302985, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: Sakura
     introduction: A wise mage who wields powerful magic and ancient knowledge.
     price: 1600
     isPurchased: 0
     isSelected: 0
+    spriteLibraryAsset: {fileID: 7108339969198208228, guid: c94095a1dfc40554cbf96495b7ea964a, type: 3}
   - image: {fileID: -1427503497, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: Nathan
     introduction: A resourceful rogue, adept at stealth and quick thinking in dangerous
@@ -46,16 +50,19 @@ MonoBehaviour:
     price: 2000
     isPurchased: 0
     isSelected: 0
-  - image: {fileID: -355475041, guid: be748f32e62bf0f4898b0555d35e186c, type: 3}
+    spriteLibraryAsset: {fileID: 7108339969198208228, guid: 808124334559fa84fa0bac0a275da506, type: 3}
+  - image: {fileID: 1946802097, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: Sasuke
     introduction: 'A cunning rogue whose nimble fingers and quick wit let them slip
       through the shadows and outsmart their foes.  '
     price: 2500
-    isPurchased: 0
+    isPurchased: 1
     isSelected: 0
+    spriteLibraryAsset: {fileID: 7108339969198208228, guid: 66fd1b1956b49104b9a8f445cef27a74, type: 3}
   - image: {fileID: -344705900, guid: 7e3d573b96bd29347979b3a5a00f3cad, type: 3}
     name: MA Ghost
     introduction: A fearless adventurer with an insatiable curiosity for the unknown.
-    price: 2500
+    price: 3000
     isPurchased: 0
     isSelected: 0
+    spriteLibraryAsset: {fileID: 0}
