@@ -20,9 +20,18 @@ public class MonsterBase : ScriptableObject
     [SerializeField] int spAttack;
     [SerializeField] int spDefense;
     [SerializeField] int speed;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] int money = 50;
+    [SerializeField] int experience = 1;
+>>>>>>> Stashed changes
     [SerializeField] List<LearnAbleMove> learnAbleMoves;
     [SerializeField] List<LearnAbleQuestion> learnAbleQuestions;
 
+    public int getExperienceForLevel(int level)
+    {
+        return level * level * level;
+    }
     //Function for access variable
     public string Name { get { return monsterName; } }
     public string Description { get { return description; } }
@@ -35,6 +44,11 @@ public class MonsterBase : ScriptableObject
     public int SpAttack { get { return spAttack; } }
     public int SpDefense { get { return spDefense;} }
     public int Speed { get { return speed;} }
+<<<<<<< Updated upstream
+=======
+    public int Money { get { return money; } }
+    public int ExperienceYield { get { return experience; } }
+>>>>>>> Stashed changes
     public List<LearnAbleMove> LearnAbleMoves { get { return learnAbleMoves;} }
     
     public List<LearnAbleQuestion> LearnAbleQuestions { get { return learnAbleQuestions; } }

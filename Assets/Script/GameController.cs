@@ -15,10 +15,32 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+<<<<<<< Updated upstream
         playerController.onEncountered += StartBattle;
         battleSystem.onBattleOver += EndBattle;
 
         DialogManager.Instance.OnShowDialog += () =>
+=======
+        Debug.Log("GameController::Start()");
+        if (sceneMusic != null)
+            AudioManager.i.PlayMusic(sceneMusic, true, true);
+        int savedMoney = PlayerPrefs.GetInt("Money", 0);
+        battleSystem.SetMoney(savedMoney);
+        moneyObject.SetActive(true);
+        buttonStop.SetActive(true); 
+        
+        playerController.onEncountered += StartBattle;
+        battleSystem.onBattleOver += EndBattle;
+
+        DialogManager.Instance.OnShowDialog += HandleShowDialog;
+
+    }
+
+    private void HandleShowDialog()
+    {
+        Debug.Log("GameController::HandleShowDialog()");
+        if (!isTalkNPC)
+>>>>>>> Stashed changes
         {
             state = GameState.Dialog;
         };
@@ -39,6 +61,7 @@ public class GameController : MonoBehaviour
 
     void StartBattle(MonsterBase Enemy, Monster Player, Collider2D Collision)
     {
+        Debug.Log("GameController::StartBattle()");
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);

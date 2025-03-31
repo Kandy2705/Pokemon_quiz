@@ -23,6 +23,11 @@ MonoBehaviour:
   spAttack: 60
   spDefense: 60
   speed: 60
+<<<<<<< Updated upstream
+=======
+  money: 50
+  experience: 1
+>>>>>>> Stashed changes
   learnAbleMoves:
   - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
     level: 0
