@@ -23,6 +23,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Movement playerMovement;
 
     public int money = 0;
+    public int experience = 0;
     [SerializeField] GameObject moneyText;
 
     BattleState state;
@@ -65,19 +66,34 @@ public class BattleSystem : MonoBehaviour
         Collision = collision;
         enemy._base = Enemy;
         player.Monster = Player;
-        StartCoroutine(SetupBattle(new Monster(Enemy, Player.Level <= 5 ? Player.Level + Random.Range(0, 6): (Random.Range(0, 2) == 0 ? Player.Level + Random.Range(0, 6): Player.Level - Random.Range(0, 6))), Player));
+        int enemyLevel;
+
+        if (Player.Level <= 5)
+        {
+            enemyLevel = Player.Level + Random.Range(0, 2); 
+        }
+        else
+        {
+            enemyLevel = Player.Level + (Random.Range(0, 2) == 0 ? 0 : 1);
+        }
+
+        enemyLevel = Mathf.Max(1, enemyLevel);
+
+        Monster enemyMonster = new Monster(Enemy, enemyLevel);
+        
+        StartCoroutine(SetupBattle(enemyMonster, Player));
 
         AudioManager.i.PlayMusic(wildBattleMusic);
     }
 
     public IEnumerator SetupBattle(Monster Enemy, Monster Player){
         player.Setup(Player);
-        playerHUD.SetData(player.Monster, characterShopDatabase);
+        playerHUD.SetData(player.Monster, characterShopDatabase, true);
         enemy.Setup(Enemy);
-        enemyHUD.SetData(enemy.Monster, null);
+        enemyHUD.SetData(enemy.Monster,null, false);
 
         //Debug.Log(player.Monster.HP);
-
+        Debug.Log("Setting up battle");
         dialogBox.SetMoveNames(player.Monster.Moves);
         yield return dialogBox.TypeDialog($"Xuất hiện quái vật {enemy.Monster.Base.Name}");
         yield return new WaitForSeconds(1f);
@@ -163,11 +179,53 @@ public class BattleSystem : MonoBehaviour
             if(Collision != null){
                 Collision.gameObject.SetActive(false);
             }
-
+            
+            //gaining exp and level up
+            //-------------------------------------------------
+            int expYield = player.Monster.Base.ExperienceYield;
+            Debug.Log($"Player expYield {expYield}");
+            int enemyLv = enemy.Monster.Level;
+            Debug.Log($"enemy level{enemyLv}");
+            float expGain = Mathf.FloorToInt((expYield * enemyLv * 10) / (enemyLv - 3));
+            Debug.Log($"Exp gained {expGain}");
+            Debug.Log($"Currently exp {player.Monster.EXP}");
+            float remainingEXP = player.Monster.MaxEXP - player.Monster.EXP;
+            Debug.Log($"Remaining EXP: {remainingEXP}");
+            float temp = 0;
+            if (remainingEXP < expGain)
+            {
+                temp = (player.Monster.EXP + expGain) - player.Monster.MaxEXP;
+                Debug.Log($"Temp EXP: {temp}");
+                expGain -= temp;
+                Debug.Log($"Remaining EXP: {remainingEXP}");
+            }
+            player.Monster.EXP += expGain;
+            Debug.Log($"After get exp {player.Monster.EXP}");
+            yield return dialogBox.TypeDialog($"Người chơi được cộng {expGain} kinh nghiệm");
+            StartCoroutine(playerHUD.UpdateEXP(player.Monster));
+            if (player.Monster.EXP == player.Monster.MaxEXP)
+            {
+                player.Monster.Level += 1;
+                Debug.Log($"PLayer level {player.Monster.Level}");
+                yield return dialogBox.TypeDialog($"Người chơi được tăng lên level {player.Monster.Level}");
+                player.Monster.EXP = 0;
+                if (temp != 0)
+                {
+                    player.Monster.EXP += temp;
+                }
+                StartCoroutine(playerHUD.UpdateEXP(player.Monster));
+                if (player.Monster.HP < (player.Monster.MaxHP / 2))
+                {
+                    player.Monster.HP += (player.Monster.MaxHP / 4);
+                    yield return dialogBox.TypeDialog($"Người chơi hiện tại có số máu dưới 50% nên được cộng thêm {(player.Monster.Level/4)} HP");
+                    StartCoroutine(playerHUD.UpdateHP(player.Monster));
+                }
+            }
+            Debug.Log($"Player exp {player.Monster.EXP}");
+            //-------------------------------------------------
             AudioManager.i.PlayMusic(battleVictoryMusic);
-
-
-
+            
+            
             if (enemy.Monster.Level > player.Monster.Level)
             {
                 money += enemy.Monster.Money;
@@ -180,7 +238,7 @@ public class BattleSystem : MonoBehaviour
             UpdateMoneyUI();
 
             PlayerPrefs.SetInt("Money", money);
-
+            
             yield return new WaitForSeconds(2f);
             onBattleOver(true);
         }
@@ -216,8 +274,10 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(playerHUD.UpdateHP(player.Monster));
         if (isFainted) {
-            yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN VÀ BYE!!!");
+            yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN, TRỪ 1 CẤP VÀ BYE!!!");
             player.PlayFaintAnimation();
+            player.Monster.Level -= 1;
+            player.Monster.EXP = 0;
             yield return new WaitForSeconds(2f);
             onBattleOver(false);
         }

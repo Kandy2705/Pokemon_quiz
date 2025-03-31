@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
 
-public enum GameState {FreeRoam, Battle, Dialog}
+public enum GameState { FreeRoam, Battle, Dialog }
 public class GameController : MonoBehaviour
 {
     GameState state;
@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] GameObject DeathScene;
+    [SerializeField] GameObject MinimAP;
     [SerializeField] private GameObject moneyObject;
     [SerializeField] private GameObject buttonStop;
     [SerializeField] CharacterShopDatabase shopDatabase;
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
     bool musicEndStarted = false;
     bool isTalkNPC = false;
 
-    
+
     private void Start()
     {
         if (sceneMusic != null)
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
             int newMoney = currentMoney / 3;
             battleSystem.SetMoney(newMoney);
             PlayerPrefs.SetInt("Money", newMoney);
+            MinimAP.gameObject.SetActive(false);
         }
         else
         {
@@ -99,7 +101,7 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
         moneyObject.SetActive(true);
-
+        playerController.enabled = true;
     }
 
     void StartBattle(MonsterBase Enemy, Monster Player, Collider2D Collision)
@@ -108,6 +110,7 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
         moneyObject.SetActive(false);
+        playerController.enabled = false;
 
         battleSystem.StartBattle(Enemy, Player, Collision);
     }
@@ -144,11 +147,11 @@ public class GameController : MonoBehaviour
             }
             playerController.HandleUpdate();
         }
-        else if(state == GameState.Battle)
+        else if (state == GameState.Battle)
         {
             battleSystem.HandleUpdate();
         }
-        else if(state == GameState.Dialog)
+        else if (state == GameState.Dialog)
         {
             DialogManager.Instance.HandleUpdate();
         }
