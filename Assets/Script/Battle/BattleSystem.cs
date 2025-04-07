@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,20 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] Movement playerMovement;
 
+    [SerializeField] private Image skillImageBlock;
+    [SerializeField] private Image skillImageDoubleDamage;
+    [SerializeField] private Image skillImageHeal;
+    
+    [SerializeField] private List<SupportSkill> supportSkills = new List<SupportSkill>();
+    private bool isBlocking = false;
+    private bool doubleDamageNextAttack = false;
+
+    private SkillType currentPromptedSkill;
+    private bool isWaitingForBuyInput = false;
+
+
     public int money = 0;
+    public int experience = 0;
     [SerializeField] GameObject moneyText;
 
     BattleState state;
@@ -60,24 +74,69 @@ public class BattleSystem : MonoBehaviour
             Debug.LogWarning("moneyTextObject chưa được gán trong Inspector.");
         }
     }
+    // public void AddExperience(int amount)
+    // {
+    //     if (player != null && player.Monster != null)
+    //     {
+    //         player.Monster.EXP += amount;
+    //         if (playerHUD != null)
+    //         {
+    //             StartCoroutine(playerHUD.UpdateEXP(player.Monster));
+    //         }
+    //     }
+    // }
+
 
     public void StartBattle(MonsterBase Enemy, Monster Player, Collider2D collision){
         Collision = collision;
         enemy._base = Enemy;
         player.Monster = Player;
-        StartCoroutine(SetupBattle(new Monster(Enemy, Player.Level <= 5 ? Player.Level + Random.Range(0, 6): (Random.Range(0, 2) == 0 ? Player.Level + Random.Range(0, 6): Player.Level - Random.Range(0, 6))), Player));
+        int enemyLevel;
+
+        if (Player.Level <= 5)
+        {
+            enemyLevel = Player.Level + Random.Range(0, 2); 
+        }
+        else
+        {
+            enemyLevel = Player.Level + (Random.Range(0, 2) == 0 ? 0 : 1);
+        }
+
+        enemyLevel = Mathf.Max(1, enemyLevel);
+
+        Monster enemyMonster = new Monster(Enemy, enemyLevel);
+
+
+        GameObject blockSkillObj = GameObject.Find("BlockSkill");
+        if (blockSkillObj != null)
+            skillImageBlock = blockSkillObj.GetComponent<Image>();
+
+        GameObject doubleDamageSkillObj = GameObject.Find("DoubleDamageSkill");
+        if (doubleDamageSkillObj != null)
+            skillImageDoubleDamage = doubleDamageSkillObj.GetComponent<Image>();
+
+        GameObject healSkillObj = GameObject.Find("HealSkill");
+        if (healSkillObj != null)
+            skillImageHeal = healSkillObj.GetComponent<Image>();
+
+        // Thêm kỹ năng vào danh sách
+        supportSkills.Add(new SupportSkill("Phòng Thủ", SkillType.Block, "Chặn 1 đòn tấn công từ enemy", 3, 50, 5f, skillImageBlock));
+        supportSkills.Add(new SupportSkill("Nhân đôi sát thương", SkillType.DoubleDamage, "X2 sát thương cho lượt kế tiếp", 3, 100, 10f, skillImageDoubleDamage));
+        supportSkills.Add(new SupportSkill("Hồi HP", SkillType.Heal, "Hồi lại HP hiện tại x2", 3, 75, 8f, skillImageHeal));
+        
+        StartCoroutine(SetupBattle(enemyMonster, Player));
 
         AudioManager.i.PlayMusic(wildBattleMusic);
     }
 
     public IEnumerator SetupBattle(Monster Enemy, Monster Player){
         player.Setup(Player);
-        playerHUD.SetData(player.Monster, characterShopDatabase);
+        playerHUD.SetData(player.Monster, characterShopDatabase, true);
         enemy.Setup(Enemy);
-        enemyHUD.SetData(enemy.Monster, null);
+        enemyHUD.SetData(enemy.Monster,null, false);
 
         //Debug.Log(player.Monster.HP);
-
+        Debug.Log("Setting up battle");
         dialogBox.SetMoveNames(player.Monster.Moves);
         yield return dialogBox.TypeDialog($"Xuất hiện quái vật {enemy.Monster.Base.Name}");
         yield return new WaitForSeconds(1f);
@@ -155,7 +214,12 @@ public class BattleSystem : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
 
-        bool isFainted = enemy.Monster.TakeDamage(move, player.Monster, correct, bonusDmg);
+        //bool isFainted = enemy.Monster.TakeDamage(move, player.Monster, correct, bonusDmg);
+
+        float finalDamage = doubleDamageNextAttack ? bonusDmg * 2 : bonusDmg;
+        doubleDamageNextAttack = false;
+        bool isFainted = enemy.Monster.TakeDamage(move, player.Monster, correct, finalDamage);
+
         StartCoroutine(enemyHUD.UpdateHP(enemy.Monster));
         if (isFainted) {
             yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} đã ngất");
@@ -163,11 +227,53 @@ public class BattleSystem : MonoBehaviour
             if(Collision != null){
                 Collision.gameObject.SetActive(false);
             }
-
+            
+            //gaining exp and level up
+            //-------------------------------------------------
+            int expYield = player.Monster.Base.ExperienceYield;
+            Debug.Log($"Player expYield {expYield}");
+            int enemyLv = enemy.Monster.Level;
+            Debug.Log($"enemy level{enemyLv}");
+            float expGain = Mathf.FloorToInt((expYield * enemyLv * 10) / (enemyLv - 3));
+            Debug.Log($"Exp gained {expGain}");
+            Debug.Log($"Currently exp {player.Monster.EXP}");
+            float remainingEXP = player.Monster.MaxEXP - player.Monster.EXP;
+            Debug.Log($"Remaining EXP: {remainingEXP}");
+            float temp = 0;
+            if (remainingEXP < expGain)
+            {
+                temp = (player.Monster.EXP + expGain) - player.Monster.MaxEXP;
+                Debug.Log($"Temp EXP: {temp}");
+                expGain -= temp;
+                Debug.Log($"Remaining EXP: {remainingEXP}");
+            }
+            player.Monster.EXP += expGain;
+            Debug.Log($"After get exp {player.Monster.EXP}");
+            yield return dialogBox.TypeDialog($"Người chơi được cộng {expGain} kinh nghiệm");
+            StartCoroutine(playerHUD.UpdateEXP(player.Monster));
+            if (player.Monster.EXP == player.Monster.MaxEXP)
+            {
+                player.Monster.Level += 1;
+                Debug.Log($"PLayer level {player.Monster.Level}");
+                yield return dialogBox.TypeDialog($"Người chơi được tăng lên level {player.Monster.Level}");
+                player.Monster.EXP = 0;
+                if (temp != 0)
+                {
+                    player.Monster.EXP += temp;
+                }
+                StartCoroutine(playerHUD.UpdateEXP(player.Monster));
+                if (player.Monster.HP < (player.Monster.MaxHP / 2))
+                {
+                    player.Monster.HP += (player.Monster.MaxHP / 4);
+                    yield return dialogBox.TypeDialog($"Người chơi hiện tại có số máu dưới 50% nên được cộng thêm {(player.Monster.Level/4)} HP");
+                    StartCoroutine(playerHUD.UpdateHP(player.Monster));
+                }
+            }
+            Debug.Log($"Player exp {player.Monster.EXP}");
+            //-------------------------------------------------
             AudioManager.i.PlayMusic(battleVictoryMusic);
-
-
-
+            
+            
             if (enemy.Monster.Level > player.Monster.Level)
             {
                 money += enemy.Monster.Money;
@@ -180,7 +286,7 @@ public class BattleSystem : MonoBehaviour
             UpdateMoneyUI();
 
             PlayerPrefs.SetInt("Money", money);
-
+            
             yield return new WaitForSeconds(2f);
             onBattleOver(true);
         }
@@ -200,8 +306,27 @@ public class BattleSystem : MonoBehaviour
 
         bool lucky = Random.Range(0, 100) <= 70;
 
-        bool isFainted = player.Monster.TakeDamage(move, enemy.Monster, lucky, 1);
-        yield return dialogBox.TypeDialog(lucky ? $"{enemy.Monster.Base.Name} đã trúng bạn!!!" : $"{enemy.Monster.Base.Name} đã trượt.");
+        //bool isFainted = player.Monster.TakeDamage(move, enemy.Monster, lucky, 1);
+        //yield return dialogBox.TypeDialog(lucky ? $"{enemy.Monster.Base.Name} đã trúng bạn!!!" : $"{enemy.Monster.Base.Name} đã trượt.");
+        bool isFainted = false; 
+
+        if (lucky)
+        {
+            if (isBlocking)
+            {
+                yield return dialogBox.TypeDialog("Bạn đã chặn thành công đòn tấn công!");
+                isBlocking = false; // Reset trạng thái blocking sau khi chặn thành công
+            }
+            else
+            {
+                isFainted = player.Monster.TakeDamage(move, enemy.Monster, lucky, 1);
+                yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} đã trúng bạn!!!");
+            }
+        }
+        else
+        {
+            yield return dialogBox.TypeDialog($"{enemy.Monster.Base.Name} đã trượt.");
+        }
         yield return new WaitForSeconds(1f);
         enemy.PlayerAttackAnimation();
         AudioManager.i.PlaySfx(move.Base.Sound, true);
@@ -216,8 +341,10 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
         StartCoroutine(playerHUD.UpdateHP(player.Monster));
         if (isFainted) {
-            yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN VÀ BYE!!!");
+            yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN, TRỪ 1 CẤP VÀ BYE!!!");
             player.PlayFaintAnimation();
+            player.Monster.Level -= 1;
+            player.Monster.EXP = 0;
             yield return new WaitForSeconds(2f);
             onBattleOver(false);
         }
@@ -229,6 +356,9 @@ public class BattleSystem : MonoBehaviour
 
     void handlePlayerQuestionAnswer()
     {
+        if (EventSystem.current.currentSelectedGameObject != null) return; // UI đang được focus, không xử lý input
+
+        
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (currAnswer < enemy.Monster.Questions[randomQuestion].Base.Answers.Count - 2)
@@ -272,8 +402,114 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    // public void UseSupportSkill(SkillType skillType)
+    // {
+    //     SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
+
+    //     if (skill != null && skill.CanUse())
+    //     {
+    //         skill.UseSkill(() =>
+    //         {
+    //             switch (skillType)
+    //             {
+    //                 case SkillType.Block:
+    //                     isBlocking = true;
+    //                     StartCoroutine(dialogBox.TypeDialog("Bạn đã kích hoạt phòng thủ!"));
+    //                     break;
+
+    //                 case SkillType.DoubleDamage:
+    //                     doubleDamageNextAttack = true;
+    //                     StartCoroutine(dialogBox.TypeDialog("Lần tấn công kế tiếp sẽ x2 sát thương!"));
+    //                     break;
+
+    //                 case SkillType.Heal:
+    //                     int healAmount = player.Monster.HP * 2;
+    //                     player.Monster.HP = Mathf.Min(player.Monster.MaxHP, healAmount);
+    //                     StartCoroutine(playerHUD.UpdateHP(player.Monster));
+    //                     StartCoroutine(dialogBox.TypeDialog("Bạn đã hồi HP!"));
+    //                     break;
+    //             }
+    //         }, this); // Thêm `this` nếu UseSkill yêu cầu tham số MonoBehaviour
+    //     }
+    //     else
+    //     {
+    //         StartCoroutine(dialogBox.TypeDialog("Không thể sử dụng kỹ năng này!"));
+    //     }
+    // }
+
+    public void UseSupportSkill(SkillType skillType)
+    {
+        SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
+
+        if (skill != null && skill.CanUse())
+        {
+            skill.UseSkill(() =>
+            {
+                string alertMessage = "";
+
+                switch (skillType)
+                {
+                    case SkillType.Block:
+                        isBlocking = true;
+                        alertMessage = $"Bạn đã kích hoạt phòng thủ!\n(Số lần còn lại: {skill.uses})";
+                        break;
+
+                    case SkillType.DoubleDamage:
+                        doubleDamageNextAttack = true;
+                        alertMessage = $"Lần tấn công kế tiếp sẽ x2 sát thương!\n(Số lần còn lại: {skill.uses})";
+                        break;
+
+                    case SkillType.Heal:
+                        int healAmount = player.Monster.HP * 2;
+                        player.Monster.HP = Mathf.Min(player.Monster.MaxHP, healAmount);
+                        StartCoroutine(playerHUD.UpdateHP(player.Monster));
+                        alertMessage = $"Bạn đã hồi HP!\n(Số lần còn lại: {skill.uses})";
+                        break;
+                }
+
+                AlertManager.Instance.ShowAlert(alertMessage);
+            }, this);
+        }
+        else
+        {
+            AlertManager.Instance.ShowAlert(
+                $"\n{skill?.skillName} đã hết lượt hoặc đang hồi chiêu.\nNhấn [X] để mua ({skill?.cost} vàng).");
+
+            // Gợi ý: xử lý phím X để mua kỹ năng này
+            currentPromptedSkill = skillType; // Lưu lại kỹ năng để mua sau nếu người dùng bấm X
+            isWaitingForBuyInput = true;
+        }
+    }
+
+    public void BuySkill(SkillType skillType)
+    {
+        SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
+
+        if (skill != null && money >= skill.cost)
+        {
+            money -= skill.cost;
+            skill.uses++;
+            UpdateMoneyUI();
+            AlertManager.Instance.ShowAlert($"Đã mua {skill.skillName}!\n(Số lần còn lại: {skill.uses})");
+        }
+        else
+        {
+            AlertManager.Instance.ShowAlert("Không đủ tiền để mua!");
+        }
+    }
+
+    // public void RewardSkill(SkillType skillType)
+    // {
+    //     SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
+    //     skill.uses++;
+    //     AlertManager.Instance.ShowAlert($"Đã nhận được kỹ năng {skill.skillName}!\n(Số lần hiện tại: {skill.uses})");
+    // }
+
+
     void handlePlayerMove()
     {
+        if (EventSystem.current.currentSelectedGameObject != null) return; // UI đang được focus, không xử lý input
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if(currMove < player.Monster.Moves.Count - 2)
@@ -314,6 +550,8 @@ public class BattleSystem : MonoBehaviour
 
     void handlePlayerAction()
     {
+        if (EventSystem.current.currentSelectedGameObject != null) return; 
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             AudioManager.i.PlaySfx(AudioId.UISelect);
@@ -332,7 +570,7 @@ public class BattleSystem : MonoBehaviour
         }
         dialogBox.UpdateActionSelection(currAction);
         if (Input.GetKeyDown(KeyCode.Z))
-        {
+        {   
             AudioManager.i.PlaySfx(AudioId.UISelect);
             if (currAction == 0)
             {
@@ -379,4 +617,24 @@ public class BattleSystem : MonoBehaviour
             }
         }
     }
+    void Update()
+    {
+        if (state == BattleState.PlayerAction || state == BattleState.PlayerMove || state == BattleState.QuestionAnswer)
+        {
+            if (EventSystem.current.currentSelectedGameObject != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+            }
+        }
+
+        HandleUpdate();
+
+        if (isWaitingForBuyInput && Input.GetKeyDown(KeyCode.X))
+        {
+            BuySkill(currentPromptedSkill);
+            isWaitingForBuyInput = false;
+        }
+
+    }
+
 }

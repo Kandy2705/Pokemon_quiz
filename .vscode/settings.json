@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "My_Pokemon_Quizz.sln"
+    "dotnet.defaultSolution": "Pokemon_quiz.sln"
 }

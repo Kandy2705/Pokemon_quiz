@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D.Animation;
 
-public enum GameState {FreeRoam, Battle, Dialog}
+public enum GameState { FreeRoam, Battle, Dialog }
 public class GameController : MonoBehaviour
 {
     GameState state;
@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] GameObject DeathScene;
+    [SerializeField] GameObject MinimAP;
     [SerializeField] private GameObject moneyObject;
     [SerializeField] private GameObject buttonStop;
     [SerializeField] CharacterShopDatabase shopDatabase;
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
     bool musicEndStarted = false;
     bool isTalkNPC = false;
 
-    
+
     private void Start()
     {
         if (sceneMusic != null)
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
             int newMoney = currentMoney / 3;
             battleSystem.SetMoney(newMoney);
             PlayerPrefs.SetInt("Money", newMoney);
+            MinimAP.gameObject.SetActive(false);
         }
         else
         {
@@ -99,7 +101,7 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
         moneyObject.SetActive(true);
-
+        playerController.enabled = true;
     }
 
     void StartBattle(MonsterBase Enemy, Monster Player, Collider2D Collision)
@@ -108,6 +110,7 @@ public class GameController : MonoBehaviour
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
         moneyObject.SetActive(false);
+        playerController.enabled = false;
 
         battleSystem.StartBattle(Enemy, Player, Collision);
     }
@@ -144,13 +147,71 @@ public class GameController : MonoBehaviour
             }
             playerController.HandleUpdate();
         }
-        else if(state == GameState.Battle)
+        else if (state == GameState.Battle)
         {
             battleSystem.HandleUpdate();
         }
-        else if(state == GameState.Dialog)
+        else if (state == GameState.Dialog)
         {
             DialogManager.Instance.HandleUpdate();
         }
     }
+
+    public void GiveRandomReward()
+    {
+        int gold = UnityEngine.Random.Range(10, 51); // 10 - 50 vàng
+        int currentMoney = PlayerPrefs.GetInt("Money", 0);
+        int newMoney = currentMoney + gold;
+        PlayerPrefs.SetInt("Money", newMoney);
+        battleSystem.SetMoney(newMoney); // Cập nhật UI
+        AlertManager.Instance?.ShowAlert($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+        // int rewardType = UnityEngine.Random.Range(0, 3); // 0: Tiền, 1: Exp, 2: Skill
+
+        // switch (rewardType)
+        // {
+        //     case 0:
+        //         int gold = UnityEngine.Random.Range(10, 51); // 10 - 50 vàng
+        //         int currentMoney = PlayerPrefs.GetInt("Money", 0);
+        //         int newMoney = currentMoney + gold;
+        //         PlayerPrefs.SetInt("Money", newMoney);
+        //         battleSystem.SetMoney(newMoney); // Cập nhật UI
+        //         AlertManager.Instance?.ShowAlert($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+        //         break;
+
+        //     case 1:
+        //         int exp = UnityEngine.Random.Range(5, 21); // 5 - 20 EXP
+        //         // player.experience += exp;
+        //         AlertManager.Instance?.ShowAlert($"Bạn nhận được {exp} điểm kinh nghiệm!");
+        //         battleSystem.AddExperience(exp);
+        //         break;
+
+        //     case 2:
+        //         AlertManager.Instance?.ShowAlert("Bạn tìm thấy một cuộn giấy kỹ năng!");
+
+        //         // Random một kỹ năng ngẫu nhiên
+        //         int randomSkill = UnityEngine.Random.Range(1, 4); // 1 đến 3
+        //         SkillType rewardedSkillType;
+
+        //         switch (randomSkill)
+        //         {
+        //             case 1:
+        //                 rewardedSkillType = SkillType.Block;
+        //                 break;
+        //             case 2:
+        //                 rewardedSkillType = SkillType.DoubleDamage;
+        //                 break;
+        //             case 3:
+        //                 rewardedSkillType = SkillType.Heal;
+        //                 break;
+        //             default:
+        //                 rewardedSkillType = SkillType.Heal; // fallback
+        //                 break;
+        //         }
+
+        //         battleSystem.RewardSkill(rewardedSkillType);
+        //         break;
+
+        // }
+    }
+
 }
