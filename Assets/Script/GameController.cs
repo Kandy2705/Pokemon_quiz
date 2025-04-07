@@ -156,4 +156,62 @@ public class GameController : MonoBehaviour
             DialogManager.Instance.HandleUpdate();
         }
     }
+
+    public void GiveRandomReward()
+    {
+        int gold = UnityEngine.Random.Range(10, 51); // 10 - 50 vàng
+        int currentMoney = PlayerPrefs.GetInt("Money", 0);
+        int newMoney = currentMoney + gold;
+        PlayerPrefs.SetInt("Money", newMoney);
+        battleSystem.SetMoney(newMoney); // Cập nhật UI
+        AlertManager.Instance?.ShowAlert($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+        // int rewardType = UnityEngine.Random.Range(0, 3); // 0: Tiền, 1: Exp, 2: Skill
+
+        // switch (rewardType)
+        // {
+        //     case 0:
+        //         int gold = UnityEngine.Random.Range(10, 51); // 10 - 50 vàng
+        //         int currentMoney = PlayerPrefs.GetInt("Money", 0);
+        //         int newMoney = currentMoney + gold;
+        //         PlayerPrefs.SetInt("Money", newMoney);
+        //         battleSystem.SetMoney(newMoney); // Cập nhật UI
+        //         AlertManager.Instance?.ShowAlert($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+        //         break;
+
+        //     case 1:
+        //         int exp = UnityEngine.Random.Range(5, 21); // 5 - 20 EXP
+        //         // player.experience += exp;
+        //         AlertManager.Instance?.ShowAlert($"Bạn nhận được {exp} điểm kinh nghiệm!");
+        //         battleSystem.AddExperience(exp);
+        //         break;
+
+        //     case 2:
+        //         AlertManager.Instance?.ShowAlert("Bạn tìm thấy một cuộn giấy kỹ năng!");
+
+        //         // Random một kỹ năng ngẫu nhiên
+        //         int randomSkill = UnityEngine.Random.Range(1, 4); // 1 đến 3
+        //         SkillType rewardedSkillType;
+
+        //         switch (randomSkill)
+        //         {
+        //             case 1:
+        //                 rewardedSkillType = SkillType.Block;
+        //                 break;
+        //             case 2:
+        //                 rewardedSkillType = SkillType.DoubleDamage;
+        //                 break;
+        //             case 3:
+        //                 rewardedSkillType = SkillType.Heal;
+        //                 break;
+        //             default:
+        //                 rewardedSkillType = SkillType.Heal; // fallback
+        //                 break;
+        //         }
+
+        //         battleSystem.RewardSkill(rewardedSkillType);
+        //         break;
+
+        // }
+    }
+
 }

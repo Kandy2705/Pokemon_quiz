@@ -113,6 +113,10 @@ public class Movement : MonoBehaviour
                 animator.SetBool("isMoving", false);
                 onEncountered(randomGrassMonster, player, null);
             }
+            else if (Random.Range(1, 101) <= 20)
+            {
+                FindObjectOfType<GameController>().GiveRandomReward();
+            }
         }
     }
 
@@ -122,4 +126,37 @@ public class Movement : MonoBehaviour
             onEncountered(monsters.Monster, player, collision);
         }
     }
+
+    // void GiveRandomReward()
+    // {
+    //     int rewardType = Random.Range(0, 3); // 0: tiền, 1: exp, 2: skill
+    //     var gameController = FindObjectOfType<GameController>();
+
+    //     switch (rewardType)
+    //     {
+    //         case 0:
+    //             int gold = Random.Range(10, 51); // từ 10 đến 50 vàng
+    //             Debug.Log($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+    //             AlertManager.Instance.ShowAlert($"Bạn nhặt được {gold} vàng trong bụi cỏ!");
+    //             // TODO: tăng vàng player
+    //             gameController.money += gold;
+    //             gameController.SetMoney(playerController.money);
+    //             break;
+
+    //         case 1:
+    //             int exp = Random.Range(5, 21); // từ 5 đến 20 exp
+    //             Debug.Log($"Bạn nhận được {exp} EXP bất ngờ!");
+    //             AlertManager.Instance.ShowAlert($"Bạn nhận được {exp} EXP bất ngờ!");
+    //             gameController.experience += exp;
+    //             // TODO: tăng EXP cho player.Monster
+    //             break;
+
+    //         case 2:
+    //             Debug.Log($"Bạn học được kỹ năng mới trong bụi cỏ!");
+    //             AlertManager.Instance.ShowAlert($"Bạn học được kỹ năng mới trong bụi cỏ!");
+    //             // TODO: thêm kỹ năng vào danh sách kỹ năng player.Monster
+    //             break;
+    //     }
+    // }
+
 }
