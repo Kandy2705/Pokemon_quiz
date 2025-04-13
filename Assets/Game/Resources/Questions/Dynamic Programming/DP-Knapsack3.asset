@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: DP-Knapsack3
+  m_EditorClassIdentifier: 
+  question: "Trong b\xE0i to\xE1n Knapsack \u0111\u1EA7y \u0111\u1EE7 (Unbounded
+    Knapsack), \u0111i\u1EC3m kh\xE1c bi\u1EC7t l\u1EDBn nh\u1EA5t l\xE0 g\xEC?"
+  questionType: 5
+  answers:
+  - correctAnswer: 1
+    answer: "C\xF3 th\u1EC3 ch\u1ECDn nhi\u1EC1u v\u1EADt gi\u1ED1ng nhau nhi\u1EC1u
+      l\u1EA7n"
+  - correctAnswer: 0
+    answer: "Kh\xF4ng c\xF3 gi\u1EDBi h\u1EA1n tr\u1ECDng l\u01B0\u1EE3ng"
+  - correctAnswer: 0
+    answer: "M\u1ED7i v\u1EADt b\u1EAFt bu\u1ED9c ph\u1EA3i ch\u1ECDn"
+  - correctAnswer: 0
+    answer: "Ch\u1EC9 ch\u1ECDn \u0111\u01B0\u1EE3c \u0111\xFAng m\u1ED9t v\u1EADt"

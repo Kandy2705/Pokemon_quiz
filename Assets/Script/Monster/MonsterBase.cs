@@ -73,5 +73,6 @@ public enum MonsterType{
     List,
     Tree,
     Sort,
-    Graph
+    Graph,
+    DynamicProgramming
 };

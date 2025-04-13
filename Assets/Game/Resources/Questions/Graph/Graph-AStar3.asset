@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Graph-AStar3
+  m_EditorClassIdentifier: 
+  question: "Trong A*, h\xE0m heuristic (h(n)) c\xF3 vai tr\xF2 g\xEC?"
+  questionType: 4
+  answers:
+  - correctAnswer: 0
+    answer: "L\u01B0u tr\u1EA1ng th\xE1i c\u1EE7a c\xE1c n\xFAt \u0111\xE3 th\u0103m"
+  - correctAnswer: 0
+    answer: "T\xEDnh chi ph\xED \u0111\xE3 \u0111i t\u1EEB g\u1ED1c \u0111\u1EBFn
+      n\xFAt hi\u1EC7n t\u1EA1i"
+  - correctAnswer: 0
+    answer: "X\xE1c \u0111\u1ECBnh \u0111\u1ED9 s\xE2u c\u1EE7a n\xFAt trong c\xE2y
+      t\xECm ki\u1EBFm"
+  - correctAnswer: 1
+    answer: "\u01AF\u1EDBc l\u01B0\u1EE3ng chi ph\xED t\u1EEB n\xFAt hi\u1EC7n t\u1EA1i
+      \u0111\u1EBFn \u0111\xEDch"

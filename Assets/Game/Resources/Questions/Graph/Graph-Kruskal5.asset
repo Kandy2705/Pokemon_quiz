@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: Graph-Kruskal5
+  m_EditorClassIdentifier: 
+  question: "T\u1EA1i sao c\u1EA7n s\u1EAFp x\u1EBFp c\xE1c c\u1EA1nh theo tr\u1ECDng
+    s\u1ED1 trong thu\u1EADt to\xE1n Kruskal?"
+  questionType: 4
+  answers:
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 lo\u1EA1i b\u1ECF chu tr\xECnh tr\u01B0\u1EDBc khi duy\u1EC7t"
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 d\u1EC5 c\u1EADp nh\u1EADt tr\u1ECDng s\u1ED1 c\u1EA1nh"
+  - correctAnswer: 0
+    answer: "\u0110\u1EC3 x\u1EED l\xFD \u0111\u1ED3 th\u1ECB v\xF4 h\u01B0\u1EDBng"
+  - correctAnswer: 1
+    answer: "\u0110\u1EC3 ch\u1ECDn c\u1EA1nh nh\u1ECF nh\u1EA5t tr\u01B0\u1EDBc
+      theo chi\u1EBFn l\u01B0\u1EE3c Greedy"
