@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: DP-Knapsack5
+  m_EditorClassIdentifier: 
+  question: "B\u1EA1n c\xF3 m\u1ED9t chi\u1EBFc ba l\xF4 v\u1EDBi s\u1EE9c ch\u1EE9a
+    t\u1ED1i \u0111a W = 6.\nDanh s\xE1ch c\xE1c v\u1EADt:\n+ A, tr\u1ECDng l\u01B0\u1EE3ng
+    1, gi\xE1 tr\u1ECB 1\n+ B, tr\u1ECDng l\u01B0\u1EE3ng 2, gi\xE1 tr\u1ECB 4\n+
+    C, tr\u1ECDng l\u01B0\u1EE3ng 3, gi\xE1 tr\u1ECB 5\n+ D, tr\u1ECDng l\u01B0\u1EE3ng
+    4, gi\xE1 tr\u1ECB 7\nN\u1EBFu ch\u1EC9 \u0111\u01B0\u1EE3c ch\u1ECDn m\u1ED9t
+    s\u1ED1 v\u1EADt sao cho t\u1ED5ng tr\u1ECDng l\u01B0\u1EE3ng kh\xF4ng v\u01B0\u1EE3t
+    qu\xE1 6, b\u1EA1n n\xEAn ch\u1ECDn t\u1EADp n\xE0o \u0111\u1EC3 t\u1ED5ng gi\xE1
+    tr\u1ECB l\u1EDBn nh\u1EA5t?"
+  questionType: 5
+  answers:
+  - correctAnswer: 0
+    answer: "V\u1EADt D"
+  - correctAnswer: 1
+    answer: "V\u1EADt A v\xE0 D"
+  - correctAnswer: 0
+    answer: "V\u1EADt A v\xE0 C"
+  - correctAnswer: 0
+    answer: "V\u1EADt B v\xE0 C"

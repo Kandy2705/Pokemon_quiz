@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb7c93ce068d0dd46807bcdaa749b953, type: 3}
+  m_Name: DP-Knapsack1
+  m_EditorClassIdentifier: 
+  question: "Trong b\xE0i to\xE1n 0/1 Knapsack, m\u1ED7i v\u1EADt \u0111\u01B0\u1EE3c:"
+  questionType: 5
+  answers:
+  - correctAnswer: 0
+    answer: "Chia nh\u1ECF th\xE0nh nhi\u1EC1u ph\u1EA7n \u0111\u1EC3 t\u1ED1i \u01B0u
+      t\u1ED5ng gi\xE1 tr\u1ECB"
+  - correctAnswer: 1
+    answer: "Ch\u1ECDn ho\u1EB7c kh\xF4ng ch\u1ECDn, kh\xF4ng \u0111\u01B0\u1EE3c
+      chia nh\u1ECF"
+  - correctAnswer: 0
+    answer: "B\u1EAFt bu\u1ED9c ph\u1EA3i ch\u1ECDn"
+  - correctAnswer: 0
+    answer: "C\xF3 th\u1EC3 ch\u1ECDn m\u1ED9t n\u1EEDa"
