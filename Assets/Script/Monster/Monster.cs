@@ -12,6 +12,14 @@ public class Monster
     public List<Move> Moves { get; set; } 
     public List<Question> Questions { get; set; }
 
+    public int currentHP;
+    public int currentMaxHP;
+    public int currentAttack;
+    public int currentDefense;
+    public int currentSpAttack;
+    public int currentSpDefense;
+    public int currentSpeed;
+
     public Monster(MonsterBase pBase, int pLevel)
     {
         this.Base = pBase;
@@ -19,6 +27,13 @@ public class Monster
         // Debug.Log($"Monster name: {this.Base.Name}");
         // Debug.Log($"Monster Level: {this.Level.ToString()}");
         // Debug.Log($"Monster New Level: {newLevel.ToString()}");
+
+        currentMaxHP = pBase.MaxHP;
+        currentAttack = pBase.Attack;
+        currentDefense = pBase.Defense;
+        currentSpAttack = pBase.SpAttack;
+        currentSpDefense = pBase.SpDefense;
+        currentSpeed = pBase.Speed;
 
         HP = MaxHP;
 
@@ -89,5 +104,15 @@ public class Monster
     {
         int r = Random.Range(0, Moves.Count);
         return Moves[r];
+    }
+
+    public void LevelUp()
+    {
+        currentMaxHP += Mathf.FloorToInt(currentMaxHP / 5f);
+        currentAttack += Mathf.FloorToInt(currentAttack / 5f);
+        currentDefense += Mathf.FloorToInt(currentDefense / 5f);
+        currentSpAttack += Mathf.FloorToInt(currentSpAttack / 5f);
+        currentSpDefense += Mathf.FloorToInt(currentSpDefense / 5f);
+        currentSpeed += Mathf.FloorToInt(currentSpeed / 5f);
     }
 }

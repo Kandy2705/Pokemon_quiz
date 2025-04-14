@@ -30,14 +30,23 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] private List<SupportSkill> supportSkills = new List<SupportSkill>();
     private bool isBlocking = false;
     private bool doubleDamageNextAttack = false;
+    public Text levelPlayerText;
 
     private SkillType currentPromptedSkill;
     private bool isWaitingForBuyInput = false;
+
+    public SkillType blockSkill;
+    public SkillType doubleDameSkill;
+    public SkillType healSkill;
 
 
     public int money = 0;
     public int experience = 0;
     [SerializeField] GameObject moneyText;
+
+    public Text textNumberBlocksk;
+    public Text textNumberDoublesk;
+    public Text textNumberHealsk;
 
     BattleState state;
     int currAction;
@@ -50,12 +59,27 @@ public class BattleSystem : MonoBehaviour
 
     Collider2D Collision;
 
+    private void Start()
+    {
+        if (player != null && player.Monster != null)
+        {
+            int playerLevel = player.level;
+            Debug.Log($"Level của người chơi: {playerLevel}");
+            levelPlayerText.text = "Lvl " + playerLevel.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("Player hoặc player.Monster chưa được khởi tạo!");
+        }
+    }
 
     public void SetMoney(int newMoney)
     {
         money = newMoney;
         UpdateMoneyUI();
     }
+
+
     void UpdateMoneyUI()
     {
         if (moneyText != null)
@@ -86,6 +110,7 @@ public class BattleSystem : MonoBehaviour
     //     }
     // }
 
+    
 
     public void StartBattle(MonsterBase Enemy, Monster Player, Collider2D collision){
         Collision = collision;
@@ -93,13 +118,14 @@ public class BattleSystem : MonoBehaviour
         player.Monster = Player;
         int enemyLevel;
 
-        if (Player.Level <= 5)
+
+        if (player.level <= 5)
         {
-            enemyLevel = Player.Level + Random.Range(0, 2); 
+            enemyLevel = player.level + Random.Range(0, 2); 
         }
         else
         {
-            enemyLevel = Player.Level + (Random.Range(0, 2) == 0 ? 0 : 1);
+            enemyLevel = player.level + (Random.Range(0, 2) == 0 ? 0 : 1);
         }
 
         enemyLevel = Mathf.Max(1, enemyLevel);
@@ -134,6 +160,10 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetData(player.Monster, characterShopDatabase, true);
         enemy.Setup(Enemy);
         enemyHUD.SetData(enemy.Monster,null, false);
+
+        int playerLevel = player.level;
+        Debug.Log($"Player level sau khi Setup: {playerLevel}");
+        levelPlayerText.text = "Lvl " + playerLevel.ToString();
 
         //Debug.Log(player.Monster.HP);
         Debug.Log("Setting up battle");
@@ -190,6 +220,19 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    public float GetTypeMul(MonsterType monsterType)
+    {
+        switch (monsterType)
+        {
+            case MonsterType.Tree or MonsterType.Sort or MonsterType.Graph:
+                return 10.0f;
+            case MonsterType.DynamicProgramming:
+                return 8.0f;
+            default:
+                return 4.0f;
+        }
+    }
+
     IEnumerator PerformPlayerMove(bool correct, float bonusDmg)
     {
         state = BattleState.Busy;
@@ -234,8 +277,11 @@ public class BattleSystem : MonoBehaviour
             Debug.Log($"Player expYield {expYield}");
             int enemyLv = enemy.Monster.Level;
             Debug.Log($"enemy level{enemyLv}");
-            float expGain = Mathf.FloorToInt((expYield * enemyLv * 10) / (enemyLv - 3));
-            Debug.Log($"Exp gained {expGain}");
+            //float expGain = Mathf.FloorToInt((expYield * enemyLv * 10) / (enemyLv - 3));
+            float typeMultiplier = GetTypeMul(enemy.Monster.Base.Type);
+            float balanceFactor = 1.0f;
+            float expGain = Mathf.FloorToInt(expYield * enemyLv * typeMultiplier * balanceFactor * 4);
+            //Debug.Log($"Exp gained {expGain}");
             Debug.Log($"Currently exp {player.Monster.EXP}");
             float remainingEXP = player.Monster.MaxEXP - player.Monster.EXP;
             Debug.Log($"Remaining EXP: {remainingEXP}");
@@ -253,9 +299,15 @@ public class BattleSystem : MonoBehaviour
             StartCoroutine(playerHUD.UpdateEXP(player.Monster));
             if (player.Monster.EXP == player.Monster.MaxEXP)
             {
-                player.Monster.Level += 1;
-                Debug.Log($"PLayer level {player.Monster.Level}");
-                yield return dialogBox.TypeDialog($"Người chơi được tăng lên level {player.Monster.Level}");
+                Debug.Log("truoc " + player.Monster.Attack);
+                player.level += 1;
+                player.Monster.LevelUp();
+                Debug.Log("sau " + player.Monster.Attack);
+
+                Debug.Log($"PLayer level {player.level}");
+                levelPlayerText.text = "Lvl " + player.level.ToString();
+
+                yield return dialogBox.TypeDialog($"Người chơi được tăng lên level {player.level}");
                 player.Monster.EXP = 0;
                 if (temp != 0)
                 {
@@ -274,13 +326,13 @@ public class BattleSystem : MonoBehaviour
             AudioManager.i.PlayMusic(battleVictoryMusic);
             
             
-            if (enemy.Monster.Level > player.Monster.Level)
+            if (enemy.Monster.Level > player.level)
             {
                 money += enemy.Monster.Money;
             }
             else
             {
-                float tempRadio = (float)enemy.Monster.Level / player.Monster.Level;
+                float tempRadio = (float)enemy.Monster.Level / player.level;
                 money += (Mathf.FloorToInt(enemy.Monster.Money * tempRadio));
             }
             UpdateMoneyUI();
@@ -343,7 +395,7 @@ public class BattleSystem : MonoBehaviour
         if (isFainted) {
             yield return dialogBox.TypeDialog($"Bạn đã thua. BẠN SẼ MẤT 1/3 SỐ TIỀN, TRỪ 1 CẤP VÀ BYE!!!");
             player.PlayFaintAnimation();
-            player.Monster.Level -= 1;
+            player.level -= 1;
             player.Monster.EXP = 0;
             yield return new WaitForSeconds(2f);
             onBattleOver(false);
@@ -437,6 +489,11 @@ public class BattleSystem : MonoBehaviour
     //     }
     // }
 
+    public void GetUpdateNumber(Text textNumber, SkillType skillType)
+    {
+        SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
+        textNumber.text = $"{skill.uses}";
+    }
     public void UseSupportSkill(SkillType skillType)
     {
         SupportSkill skill = supportSkills.Find(s => s.skillType == skillType);
@@ -619,6 +676,13 @@ public class BattleSystem : MonoBehaviour
     }
     void Update()
     {
+        GetUpdateNumber(textNumberBlocksk, blockSkill);
+        //Debug.Log("1" + currentPromptedSkill);
+        GetUpdateNumber(textNumberHealsk, healSkill);
+        //Debug.Log("2" +  currentPromptedSkill);
+        GetUpdateNumber(textNumberDoublesk, doubleDameSkill);
+        //Debug.Log("3" + currentPromptedSkill);
+
         if (state == BattleState.PlayerAction || state == BattleState.PlayerMove || state == BattleState.QuestionAnswer)
         {
             if (EventSystem.current.currentSelectedGameObject != null)

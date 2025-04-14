@@ -7,7 +7,7 @@ using DG.Tweening;
 public class BattleUnit : MonoBehaviour
 {
     [SerializeField] public MonsterBase _base;
-    [SerializeField] int level;
+    [SerializeField] public int level;
     [SerializeField] bool isPlayer;
 
     Image image;
@@ -25,7 +25,8 @@ public class BattleUnit : MonoBehaviour
 
     public void Setup(Monster monster){
         Monster = monster;
-        if(isPlayer){
+        Debug.Log($"Player level: {Monster.Level}");
+        if (isPlayer){
             image.sprite = Monster.Base.BackSprite;
         }
         else{

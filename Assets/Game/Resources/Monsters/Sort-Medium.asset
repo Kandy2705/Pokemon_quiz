@@ -25,7 +25,7 @@ MonoBehaviour:
   spDefense: 60
   speed: 70
   money: 50
-  experience: 1
+  experience: 7
   learnAbleMoves:
   - moveBase: {fileID: 11400000, guid: 8e9743f2c6c14cc439f70715648a87ce, type: 2}
     level: 0

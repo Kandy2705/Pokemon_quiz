@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     [SerializeField] GameObject MinimAP;
     [SerializeField] private GameObject moneyObject;
     [SerializeField] private GameObject buttonStop;
+    [SerializeField] private GameObject pokedexButton;
     [SerializeField] CharacterShopDatabase shopDatabase;
     [SerializeField] GameObject spriteLibraryAsset;
     private SpriteLibrary spriteLibrary;
@@ -36,6 +37,7 @@ public class GameController : MonoBehaviour
         battleSystem.SetMoney(savedMoney);
         moneyObject.SetActive(true);
         buttonStop.SetActive(true);
+        pokedexButton.SetActive(true);
 
         playerController.onEncountered += StartBattle;
         battleSystem.onBattleOver += EndBattle;
@@ -122,11 +124,13 @@ public class GameController : MonoBehaviour
         {
             moneyObject.SetActive(false);
             buttonStop.SetActive(false);
+            pokedexButton.SetActive(false);
         }
         else
         {
             moneyObject.SetActive(true);
             buttonStop.SetActive(true);
+            pokedexButton.SetActive(true);
         }
         if (state == GameState.FreeRoam)
         {

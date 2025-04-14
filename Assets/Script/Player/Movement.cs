@@ -5,6 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using UnityEngine.U2D.Animation;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -113,7 +114,7 @@ public class Movement : MonoBehaviour
                 animator.SetBool("isMoving", false);
                 onEncountered(randomGrassMonster, player, null);
             }
-            else if (Random.Range(1, 101) <= 20)
+            else if (Random.Range(1, 101) <= 10)
             {
                 FindObjectOfType<GameController>().GiveRandomReward();
             }
